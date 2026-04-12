@@ -1,1320 +1,821 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BeeInnovative Hub - La piattaforma nazionale che centralizza servizi, ricerca, marketplace e formazione per il settore apistico italiano">
-    <meta name="keywords" content="apicoltura, miele, analisi laboratorio, marketplace apistico, formazione apicoltori, monitoraggio IoT">
-    <title>BeeInnovative Hub | Piattaforma Nazionale per il Settore Apistico</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* =====================================
-           CSS VARIABLES - Brand Identity
-        ===================================== */
-        :root {
-            --honey-gold: #FDB913;
-            --honey-dark: #E6A000;
-            --honey-light: #FFE082;
-            --black: #1a1a1a;
-            --white: #FFFFFF;
-            --gray-100: #F5F5F5;
-            --gray-200: #E0E0E0;
-            --gray-800: #424242;
-            
-            /* Typography */
-            --font-display: 'Sora', sans-serif;
-            --font-body: 'Urbanist', sans-serif;
-            
-            /* Spacing */
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 4rem;
-            --space-xl: 6rem;
-            
-            /* Hexagon pattern */
-            --hex-size: 60px;
-        }
-        
-        /* =====================================
-           RESET & BASE STYLES
-        ===================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        
-        body {
-            font-family: var(--font-body);
-            color: var(--black);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: var(--white);
-        }
-        
-        /* =====================================
-           TYPOGRAPHY
-        ===================================== */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-        
-        h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-        }
-        
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 600;
-        }
-        
-        p {
-            font-size: clamp(1rem, 2vw, 1.125rem);
-            line-height: 1.7;
-        }
-        
-        /* =====================================
-           HEXAGONAL BACKGROUND PATTERN
-        ===================================== */
-        .hex-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.03;
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 52px, var(--honey-gold) 52px, var(--honey-gold) 54px),
-                repeating-linear-gradient(60deg, transparent, transparent 52px, var(--honey-gold) 52px, var(--honey-gold) 54px),
-                repeating-linear-gradient(120deg, transparent, transparent 52px, var(--honey-gold) 52px, var(--honey-gold) 54px);
-            pointer-events: none;
-        }
-        
-        /* =====================================
-           HEADER / NAVIGATION
-        ===================================== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(253, 185, 19, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem var(--space-md);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--black);
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-        
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--honey-gold);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: var(--space-md);
-            list-style: none;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--honey-gold);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--black);
-        }
-        
-        /* =====================================
-           HERO SECTION
-        ===================================== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: var(--space-xl) var(--space-md);
-            background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 50%, #FFF3CC 100%);
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-lg);
-            align-items: center;
-            z-index: 2;
-        }
-        
-        .hero-text h1 {
-            margin-bottom: var(--space-md);
-            background: linear-gradient(135deg, var(--black) 0%, var(--gray-800) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInLeft 0.8s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .hero-text .subheadline {
-            font-size: clamp(1.25rem, 3vw, 1.5rem);
-            color: var(--gray-800);
-            margin-bottom: var(--space-lg);
-            animation: slideInLeft 0.8s ease-out 0.2s backwards;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-            animation: slideInLeft 0.8s ease-out 0.4s backwards;
-        }
-        
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 1.125rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary {
-            background: var(--honey-gold);
-            color: var(--black);
-            box-shadow: 0 4px 20px rgba(253, 185, 19, 0.3);
-        }
-        
-        .btn-primary:hover {
-            background: var(--honey-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(253, 185, 19, 0.5);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--black);
-            border: 2px solid var(--black);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--black);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-        
-        .hero-visual {
-            position: relative;
-            animation: slideInRight 0.8s ease-out 0.3s backwards;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .hero-hexagon-cluster {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .hex-stat {
-            aspect-ratio: 1;
-            background: var(--white);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-md);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            animation: popIn 0.6s ease-out backwards;
-        }
-        
-        .hex-stat:nth-child(1) { animation-delay: 0.5s; }
-        .hex-stat:nth-child(2) { animation-delay: 0.6s; }
-        .hex-stat:nth-child(3) { animation-delay: 0.7s; }
-        .hex-stat:nth-child(4) { animation-delay: 0.8s; }
-        .hex-stat:nth-child(5) { animation-delay: 0.9s; }
-        .hex-stat:nth-child(6) { animation-delay: 1s; }
-        
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .hex-stat:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 50px rgba(253, 185, 19, 0.3);
-        }
-        
-        .hex-stat.featured {
-            background: linear-gradient(135deg, var(--honey-gold) 0%, var(--honey-dark) 100%);
-            color: var(--white);
-            grid-column: span 3;
-        }
-        
-        .hex-stat-number {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-        
-        .hex-stat-label {
-            font-size: 0.875rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            font-weight: 500;
-        }
-        
-        /* =====================================
-           PROBLEM/SOLUTION SECTION
-        ===================================== */
-        .problem-solution {
-            padding: var(--space-xl) var(--space-md);
-            background: var(--white);
-            position: relative;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .split-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-lg);
-            align-items: center;
-        }
-        
-        .content-box {
-            padding: var(--space-lg);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .problem-box {
-            background: linear-gradient(135deg, #FFE6E6 0%, #FFF0F0 100%);
-            border: 2px solid #FFB3B3;
-        }
-        
-        .solution-box {
-            background: linear-gradient(135deg, #E6F7FF 0%, #F0FAFF 100%);
-            border: 2px solid var(--honey-light);
-        }
-        
-        .content-box h3 {
-            margin-bottom: var(--space-sm);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .content-box ul {
-            list-style: none;
-            margin-top: var(--space-md);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .content-box li {
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-        }
-        
-        .content-box li::before {
-            content: '⬢';
-            position: absolute;
-            left: 0;
-            color: var(--honey-gold);
-            font-size: 1.5rem;
-        }
-        
-        /* =====================================
-           SERVICES SECTION
-        ===================================== */
-        .services {
-            padding: var(--space-xl) var(--space-md);
-            background: linear-gradient(180deg, var(--white) 0%, var(--gray-100) 100%);
-            position: relative;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--space-lg);
-        }
-        
-        .section-header h2 {
-            margin-bottom: var(--space-sm);
-        }
-        
-        .section-header p {
-            color: var(--gray-800);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-md);
-            margin-top: var(--space-lg);
-        }
-        
-        .service-card {
-            background: var(--white);
-            padding: var(--space-md);
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--honey-gold) 0%, var(--honey-dark) 100%);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(253, 185, 19, 0.2);
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--honey-gold) 0%, var(--honey-dark) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .service-card h3 {
-            margin-bottom: var(--space-sm);
-        }
-        
-        .service-card p {
-            color: var(--gray-800);
-            font-size: 1rem;
-        }
-        
-        /* =====================================
-           SOCIAL PROOF SECTION
-        ===================================== */
-        .social-proof {
-            padding: var(--space-xl) var(--space-md);
-            background: linear-gradient(135deg, var(--honey-gold) 0%, var(--honey-dark) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: var(--space-md);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .stat-item:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .stat-label {
-            font-size: 1.125rem;
-            font-weight: 500;
-        }
-        
-        /* =====================================
-           PRICING SECTION
-        ===================================== */
-        .pricing {
-            padding: var(--space-xl) var(--space-md);
-            background: var(--white);
-            position: relative;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-md);
-            max-width: 1200px;
-            margin: var(--space-lg) auto 0;
-        }
-        
-        .pricing-card {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: 30px;
-            padding: var(--space-lg);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .pricing-card.featured {
-            background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 100%);
-            border: 3px solid var(--honey-gold);
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(253, 185, 19, 0.3);
-        }
-        
-        .pricing-card:hover {
-            border-color: var(--honey-gold);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .pricing-badge {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            background: var(--honey-gold);
-            color: var(--black);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 15px rgba(253, 185, 19, 0.4);
-        }
-        
-        .pricing-tier {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .pricing-price {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .pricing-price span {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--gray-800);
-        }
-        
-        .pricing-period {
-            color: var(--gray-800);
-            margin-bottom: var(--space-md);
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: var(--space-md);
-        }
-        
-        .pricing-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--gray-200);
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .pricing-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--honey-gold);
-            font-weight: 700;
-            font-size: 1.25rem;
-        }
-        
-        .pricing-card .btn {
-            width: 100%;
-        }
-        
-        /* =====================================
-           CTA SECTION
-        ===================================== */
-        .cta-section {
-            padding: var(--space-xl) var(--space-md);
-            background: linear-gradient(135deg, var(--black) 0%, #2a2a2a 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .cta-content h2 {
-            color: var(--white);
-            margin-bottom: var(--space-md);
-        }
-        
-        .cta-content p {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-lg);
-            color: var(--gray-200);
-        }
-        
-        .cta-form {
-            display: flex;
-            gap: var(--space-sm);
-            max-width: 600px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-        
-        .cta-form input {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-form input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .cta-form input:focus {
-            outline: none;
-            border-color: var(--honey-gold);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        /* =====================================
-           FOOTER
-        ===================================== */
-        footer {
-            background: var(--black);
-            color: var(--white);
-            padding: var(--space-lg) var(--space-md) var(--space-md);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: var(--space-lg);
-            margin-bottom: var(--space-lg);
-        }
-        
-        .footer-about h3 {
-            color: var(--white);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .footer-about p {
-            color: var(--gray-200);
-            margin-bottom: var(--space-md);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: var(--space-sm);
-        }
-        
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--honey-gold);
-            color: var(--black);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links h4 {
-            color: var(--white);
-            margin-bottom: var(--space-sm);
-            font-size: 1.125rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links a {
-            color: var(--gray-200);
-            text-decoration: none;
-            display: block;
-            padding: 0.5rem 0;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--honey-gold);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: var(--space-md);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray-200);
-        }
-        
-        /* =====================================
-           RESPONSIVE DESIGN
-        ===================================== */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-visual {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .split-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            :root {
-                --space-lg: 3rem;
-                --space-xl: 4rem;
-            }
-            
-            nav {
-                padding: 1rem var(--space-sm);
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: var(--space-md);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-form {
-                flex-direction: column;
-            }
-            
-            .cta-form input {
-                width: 100%;
-            }
-        }
-        
-        /* =====================================
-           ANIMATIONS & UTILITIES
-        ===================================== */
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BeeInnovative Hub — Piattaforma digitale per l'apicoltura italiana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════
+   RESET & TOKENS
+════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0B08; --bg2:#131109; --bg3:#1A1710;
+  --card:#191610; --card-h:#201C11;
+  --amber:#C8780A; --gold:#E8A020; --gold-lt:#F5C842;
+  --cream:#EDE5C8; --cream2:#D4C8A8;
+  --muted:#6B5E3E; --muted2:#4A3E28;
+  --border:rgba(200,120,10,0.16); --border-h:rgba(232,160,32,0.5);
+  --sel:rgba(200,120,10,0.1);
+  --glow:0 0 0 1.5px #C8780A, 0 0 24px rgba(200,120,10,0.2);
+  --r:6px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--cream);overflow-x:hidden;line-height:1.6}
+
+/* ════════ TEXTURE LAYERS ════════ */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V18L28 2l28 16v32L28 66zM28 100L0 84V52l28-16 28 16v32L28 100z' fill='none' stroke='%23C8780A' stroke-width='0.4' stroke-opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+
+/* ════════ PROGRESS BAR ════════ */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--amber),var(--gold-lt));
+  width:0%;z-index:9999;transition:width .1s linear;
+}
+
+/* ════════ NAV ════════ */
+nav{
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;
+  background:rgba(12,11,8,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--cream);letter-spacing:.02em}
+.nav-logo em{color:var(--gold);font-style:italic}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.82rem;color:var(--muted);text-decoration:none;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{padding:9px 20px;background:var(--amber);color:#fff;border-radius:3px;font-size:.82rem;font-weight:600;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:#d8880a;color:#fff}
+@media(max-width:680px){.nav-links .nav-link-item{display:none}}
+
+/* ════════ SECTION LABEL ════════ */
+.sec-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--cream);margin-bottom:8px;line-height:1.15}
+.sec-h em{color:var(--gold);font-style:italic}
+.sec-sub{font-size:.92rem;color:var(--muted);line-height:1.7;font-weight:300;max-width:600px}
+
+/* ════════ WRAP ════════ */
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 32px}
+.section{padding:80px 0;position:relative;z-index:1}
+.section+.section{border-top:1px solid rgba(200,120,10,.08)}
+
+/* ════════ HERO ════════ */
+.hero{padding:56px 0 60px;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(232,160,32,.2);padding:6px 16px;border-radius:2px;
+  background:rgba(200,120,10,.05);margin-bottom:28px;
+  opacity:0;animation:fadeUp .5s .05s forwards;
+}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--amber);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.4rem,5.5vw,3.8rem);
+  font-weight:700;line-height:1.1;
+  color:var(--cream);margin-bottom:20px;
+  opacity:0;animation:fadeUp .55s .2s forwards;
+}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-sub{
+  font-size:clamp(.92rem,1.8vw,1.05rem);line-height:1.75;
+  color:var(--muted);max-width:540px;margin:0 auto 32px;font-weight:300;
+  opacity:0;animation:fadeUp .55s .35s forwards;
+}
+
+/* ════════ SEGMENT TOGGLE ════════ */
+.seg-wrap{display:flex;justify-content:center;margin-bottom:40px;opacity:0;animation:fadeUp .5s .5s forwards}
+.seg-track{display:flex;background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:4px;gap:4px}
+.seg-btn{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:500;
+  padding:11px 30px;border:none;border-radius:2px;background:transparent;
+  color:var(--muted);cursor:pointer;transition:all .22s;letter-spacing:.02em;
+}
+.seg-btn.active{background:var(--amber);color:#fff;box-shadow:0 2px 14px rgba(200,120,10,.35)}
+
+/* ════════ STATS STRIP ════════ */
+.stats-strip{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 52px;margin-bottom:56px;opacity:0;animation:fadeUp .5s .65s forwards}
+.stat-n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;display:block}
+.stat-l{font-size:.72rem;color:var(--muted);margin-top:4px;letter-spacing:.04em}
+
+/* ════════ INTENT GRID ════════ */
+.grid-label{text-align:center;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;opacity:0;animation:fadeUp .5s .75s forwards}
+.grid-label span{border-bottom:1px solid rgba(200,120,10,.3);padding-bottom:2px}
+.intent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;opacity:0;animation:fadeUp .5s .85s forwards}
+@media(max-width:720px){.intent-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.intent-grid{grid-template-columns:1fr}}
+
+.icard{
+  position:relative;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:20px 18px;cursor:pointer;
+  transition:border-color .2s,background .2s,transform .18s,box-shadow .2s;
+  user-select:none;overflow:hidden;
+}
+.icard::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 40%,rgba(200,120,10,.06),transparent 70%);
+  opacity:0;transition:opacity .25s;pointer-events:none;
+}
+.icard:hover{background:var(--card-h);border-color:rgba(232,160,32,.35);transform:translateY(-2px)}
+.icard:hover::before{opacity:1}
+.icard.selected{border-color:var(--amber);background:var(--sel);box-shadow:var(--glow)}
+.icard.selected::before{opacity:1}
+.icard-check{
+  position:absolute;top:10px;right:10px;width:20px;height:20px;
+  background:var(--amber);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s;
+}
+.icard.selected .icard-check{opacity:1;transform:scale(1)}
+.icard-check svg{width:10px;height:10px;stroke:#fff;stroke-width:2.5;fill:none}
+.icard-rank{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);opacity:.6;margin-bottom:9px;font-weight:500}
+.icard-icon{font-size:1.45rem;margin-bottom:9px;display:block}
+.icard h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:6px;line-height:1.25}
+.icard p{font-size:.8rem;line-height:1.6;color:var(--muted);font-weight:300}
+
+/* card stagger entrance */
+.icard{opacity:0;transform:translateY(18px);transition:opacity .35s,transform .35s,border-color .2s,background .2s,box-shadow .2s}
+.icard.in{opacity:1;transform:translateY(0)}
+.icard.selected{transform:translateY(0)!important}
+
+.sel-counter{text-align:center;font-size:.78rem;color:var(--muted);min-height:20px;margin-bottom:40px;transition:color .3s}
+.sel-counter.has-sel{color:var(--gold)}
+.sel-counter strong{color:var(--gold-lt)}
+
+/* ════════ CHI SIAMO ════════ */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr}}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 22px;display:flex;gap:18px;align-items:flex-start}
+.team-avatar{
+  width:52px;height:52px;min-width:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--amber),var(--bg3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;
+  flex-shrink:0;
+}
+.team-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:3px}
+.team-role{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.team-bio{font-size:.82rem;line-height:1.65;color:var(--muted);font-weight:300}
+
+.partners-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.partner-badge{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:3px;padding:8px 16px;font-size:.78rem;color:var(--muted2);
+  display:flex;gap:8px;align-items:center;
+}
+.partner-badge strong{color:var(--cream2)}
+
+.mission-box{
+  background:linear-gradient(135deg,var(--bg3),var(--bg2));
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:28px 28px;margin-top:32px;
+  border-left:3px solid var(--amber);
+}
+.mission-box p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;line-height:1.7;color:var(--cream2)}
+.mission-box cite{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-style:normal;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-top:14px}
+
+/* ════════ ADV BANNER ════════ */
+.adv-section{padding:40px 0;position:relative;z-index:1;border-top:1px solid rgba(200,120,10,.08)}
+.adv-label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px;text-align:center}
+.adv-banner{
+  background:linear-gradient(135deg,#1A1505 0%,#231C08 50%,#1A1505 100%);
+  border:1px solid rgba(200,120,10,.22);border-radius:var(--r);
+  padding:24px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.adv-banner:hover{border-color:rgba(232,160,32,.4);box-shadow:0 4px 24px rgba(200,120,10,.12)}
+.adv-banner::before{
+  content:'';position:absolute;top:0;right:0;width:200px;height:100%;
+  background:radial-gradient(ellipse at right,rgba(200,120,10,.08),transparent 70%);
+  pointer-events:none;
+}
+.adv-badge{
+  position:absolute;top:10px;right:14px;
+  font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted2);background:rgba(0,0,0,.3);
+  padding:2px 6px;border-radius:2px;
+}
+.adv-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:700;
+  color:var(--gold);letter-spacing:-.01em;
+  min-width:120px;
+}
+.adv-logo sub{font-size:.6rem;color:var(--muted);vertical-align:super;font-family:'Plus Jakarta Sans',sans-serif}
+.adv-content{flex:1}
+.adv-content h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:6px}
+.adv-content p{font-size:.84rem;color:var(--muted);line-height:1.5;font-weight:300}
+.adv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.adv-tag{font-size:.7rem;background:rgba(200,120,10,.1);border:1px solid rgba(200,120,10,.25);color:var(--gold);padding:2px 8px;border-radius:2px}
+.adv-cta{
+  padding:10px 22px;background:var(--amber);color:#fff;border-radius:3px;
+  font-size:.82rem;font-weight:600;white-space:nowrap;border:none;cursor:pointer;
+  transition:background .2s;
+}
+.adv-cta:hover{background:#d8880a}
+@media(max-width:620px){.adv-banner{flex-direction:column;align-items:flex-start}.adv-logo{font-size:1.3rem}.adv-cta{width:100%;text-align:center}}
+
+/* ════════ ABBONAMENTI ════════ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media(max-width:760px){.pricing-grid{grid-template-columns:1fr}}
+.pricing-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:28px 22px;position:relative;
+  transition:border-color .2s,transform .18s,box-shadow .2s;
+  display:flex;flex-direction:column;
+}
+.pricing-card:hover{border-color:rgba(232,160,32,.3);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.pricing-card.featured{border-color:var(--amber);box-shadow:var(--glow)}
+.pricing-popular{
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+  background:var(--amber);color:#fff;
+  font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  padding:4px 14px;border-radius:0 0 4px 4px;white-space:nowrap;
+}
+.pricing-seg{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);opacity:.7;margin-bottom:10px}
+.pricing-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.pricing-price{margin-bottom:6px}
+.pricing-price strong{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--gold-lt)}
+.pricing-price span{font-size:.82rem;color:var(--muted)}
+.pricing-desc{font-size:.82rem;color:var(--muted);line-height:1.6;font-weight:300;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.pricing-features{list-style:none;margin-bottom:24px;flex:1}
+.pricing-features li{font-size:.82rem;color:var(--cream2);padding:5px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.pricing-features li::before{content:'⬡';color:var(--amber);font-size:.7rem;margin-top:2px;flex-shrink:0}
+.pricing-btn{
+  width:100%;padding:12px 18px;border:none;border-radius:3px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:all .2s;letter-spacing:.02em;
+}
+.pricing-btn.primary{background:var(--amber);color:#fff;box-shadow:0 4px 18px rgba(200,120,10,.3)}
+.pricing-btn.primary:hover{background:#d8880a;box-shadow:0 4px 24px rgba(200,120,10,.5)}
+.pricing-btn.secondary{background:transparent;color:var(--gold);border:1px solid rgba(232,160,32,.4)}
+.pricing-btn.secondary:hover{background:rgba(200,120,10,.08);border-color:var(--amber)}
+
+/* ════════ FORM ════════ */
+.form-section{max-width:500px;margin:0 auto;padding-bottom:20px}
+.interests-preview{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:18px;display:none}
+.interests-preview.visible{display:block}
+.ip-label{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.ip-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ip-tag{font-size:.76rem;background:rgba(200,120,10,.1);border:1px solid rgba(200,120,10,.28);color:var(--gold);padding:3px 10px;border-radius:2px;font-weight:500}
+#signup-form{display:flex;flex-direction:column;gap:10px}
+#signup-form input[type=email]{
+  padding:14px 18px;background:var(--bg2);border:1.5px solid var(--border);
+  border-radius:4px;color:var(--cream);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.94rem;
+  outline:none;transition:border-color .2s;
+}
+#signup-form input[type=email]:focus{border-color:var(--amber)}
+#signup-form input[type=email]::placeholder{color:var(--muted)}
+#signup-form button[type=submit]{
+  padding:14px 24px;background:var(--amber);color:#fff;border:none;border-radius:4px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.94rem;font-weight:600;
+  cursor:pointer;letter-spacing:.02em;
+  transition:background .2s,transform .1s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(200,120,10,.32);
+}
+#signup-form button[type=submit]:hover{background:#d8880a;box-shadow:0 4px 28px rgba(200,120,10,.5)}
+#signup-form button[type=submit]:active{transform:scale(.98)}
+.form-micro{text-align:center;font-size:.72rem;color:var(--muted);margin-top:8px}
+.form-micro a{color:inherit;text-decoration:underline;text-decoration-color:transparent;transition:.2s}
+.form-micro a:hover{text-decoration-color:currentColor}
+#success-msg{display:none;text-align:center;padding:40px 16px}
+#success-msg .s-icon{font-size:2.4rem;display:block;margin-bottom:14px}
+#success-msg h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold-lt);margin-bottom:10px}
+#success-msg p{font-size:.88rem;color:var(--muted);line-height:1.7;font-weight:300}
+
+/* ════════ STICKY BAR ════════ */
+#intent-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:linear-gradient(135deg,#17130A,#1F1A0A);
+  border-top:1px solid var(--border);
+  padding:12px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  z-index:300;
+  transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);
+  backdrop-filter:blur(12px);
+}
+#intent-bar.visible{transform:translateY(0)}
+.ib-left{flex:1;min-width:0}
+.ib-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:3px}
+.ib-modules{font-size:.83rem;color:var(--cream);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib-cta{flex-shrink:0;padding:10px 22px;background:var(--amber);color:#fff;border:none;border-radius:3px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
+.ib-cta:hover{background:#d8880a}
+
+/* ════════ DIVIDER ════════ */
+.hex-div{display:flex;align-items:center;gap:16px;margin:8px 0}
+.hex-div::before,.hex-div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.hex-div span{font-size:1rem;color:var(--amber);opacity:.35}
+
+/* ════════ FOOTER ════════ */
+footer{
+  position:relative;z-index:1;
+  border-top:1px solid rgba(200,120,10,.1);
+  padding:28px 48px;margin-bottom:60px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  font-size:.75rem;color:var(--muted);
+}
+footer a{color:inherit;text-decoration:none}
+footer a:hover{color:var(--gold)}
+@media(max-width:520px){footer{flex-direction:column;text-align:center;padding:24px 20px}}
+
+/* ════════ SCROLL-IN UTILITY ════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .55s,transform .55s}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s} .reveal-d2{transition-delay:.2s} .reveal-d3{transition-delay:.3s}
+
+/* ════════ ANIMATIONS ════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:680px){nav{padding:14px 20px}.wrap{padding:0 18px}.section{padding:60px 0}}
+</style>
 </head>
 <body>
-    <!-- HEADER / NAVIGATION -->
-    <header id="header">
-        <nav>
-            <a href="#" class="logo">
-                <div class="logo-icon">🐝</div>
-                <span>BeeInnovative Hub</span>
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#servizi">Servizi</a></li>
-                <li><a href="#pricing">Prezzi</a></li>
-                <li><a href="#partnership">Partnership</a></li>
-                <li><a href="#contatti">Contatti</a></li>
-                <li><a href="#contatti" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1rem;">Inizia Gratis</a></li>
-            </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-        </nav>
-    </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hex-bg"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>La Piattaforma Nazionale che Centralizza il Settore Apistico</h1>
-                <p class="subheadline">Servizi, Ricerca, Marketplace e Formazione in un unico Hub per 75.000 apicoltori italiani</p>
-                <div class="cta-buttons">
-                    <a href="#servizi" class="btn btn-primary">Scopri i Servizi</a>
-                    <a href="#partnership" class="btn btn-secondary">Diventa Partner</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-hexagon-cluster">
-                    <div class="hex-stat featured">
-                        <div class="hex-stat-number">75K</div>
-                        <div class="hex-stat-label">Apicoltori Italiani</div>
-                    </div>
-                    <div class="hex-stat">
-                        <div class="hex-stat-number">79%</div>
-                        <div class="hex-stat-label">Professionisti</div>
-                    </div>
-                    <div class="hex-stat">
-                        <div class="hex-stat-number">1.6M</div>
-                        <div class="hex-stat-label">Arnie</div>
-                    </div>
-                    <div class="hex-stat">
-                        <div class="hex-stat-number">+37%</div>
-                        <div class="hex-stat-label">Crescita 2019-2023</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div id="progress-bar"></div>
 
-    <!-- PROBLEM / SOLUTION -->
-    <section class="problem-solution">
-        <div class="container">
-            <div class="split-content">
-                <div class="content-box problem-box scroll-animate">
-                    <h3>❌ Il Problema del Settore</h3>
-                    <p>Il settore apistico italiano è altamente frammentato e caratterizzato da criticità strutturali:</p>
-                    <ul>
-                        <li>91,7% microimprese con scarsa digitalizzazione</li>
-                        <li>Difficoltà a trovare servizi qualificati e verificati</li>
-                        <li>Mancanza di centralizzazione nelle comunicazioni</li>
-                        <li>Canali di vendita dispersi e inefficienti</li>
-                        <li>Accesso limitato a ricerca e innovazione</li>
-                    </ul>
-                </div>
-                <div class="content-box solution-box scroll-animate">
-                    <h3>✓ La Nostra Soluzione</h3>
-                    <p>BeeInnovative Hub è la prima piattaforma nazionale che centralizza e semplifica:</p>
-                    <ul>
-                        <li>Accesso verificato a laboratori e servizi specializzati</li>
-                        <li>Marketplace centralizzato per prodotti apistici</li>
-                        <li>Formazione e-learning con esperti del settore</li>
-                        <li>Strumenti di monitoraggio e gestione IoT</li>
-                        <li>Rete collaborativa per ricerca e innovazione</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bee<em>Innovative</em> Hub</div>
+  <div class="nav-links">
+    <a href="#chi-siamo" class="nav-link-item">Chi siamo</a>
+    <a href="#servizi" class="nav-link-item">Servizi</a>
+    <a href="#abbonamenti" class="nav-link-item">Abbonamenti</a>
+    <a href="#signup" class="nav-cta" onclick="track('nav','cta-accesso')">Accesso anticipato</a>
+  </div>
+</nav>
 
-    <!-- SERVICES SECTION -->
-    <section class="services" id="servizi">
-        <div class="container">
-            <div class="section-header scroll-animate">
-                <h2>Servizi Offerti dai Partner</h2>
-                <p>Una suite completa di strumenti e servizi per professionisti dell'apicoltura</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">🔬</div>
-                    <h3>Analisi di Laboratorio</h3>
-                    <p>Accesso diretto a laboratori certificati per analisi melissopalinologiche, fisico-chimiche, ricerca residui e parametri qualità</p>
-                </div>
-                
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">🛒</div>
-                    <h3>Marketplace Certificato</h3>
-                    <p>Piattaforma centralizzata per vendita prodotti apistici con verifiche qualità e sistema recensioni trasparente</p>
-                </div>
-                
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">📚</div>
-                    <h3>E-Learning Specializzato</h3>
-                    <p>Corsi, webinar e workshop con università, ricercatori e esperti del settore. Formazione continua e certificata</p>
-                </div>
-                
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">📊</div>
-                    <h3>Monitoraggio IoT</h3>
-                    <p>Strumenti avanzati per monitoraggio salute colonie, sensori ambientali, bilance intelligenti e alert predittivi</p>
-                </div>
-                
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">🔬</div>
-                    <h3>Ricerca Collaborativa</h3>
-                    <p>Centro condiviso per progetti sperimentali con università ed enti di ricerca. Partecipa all'innovazione del settore</p>
-                </div>
-                
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Consulenze Tecniche</h3>
-                    <p>Supporto specializzato per gestione alveari, pratiche burocratiche, certificazioni e normative regionali</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ══════ HERO ══════ -->
+<div class="wrap">
+<section class="hero">
+  <div class="hero-badge">
+    <span id="src-badge">Accesso Anticipato · Beta 2025</span>
+  </div>
+  <h1 id="hero-h1">L'apicoltura italiana<br>merita <em>strumenti migliori.</em></h1>
+  <p class="hero-sub" id="hero-sub">Gestire analisi, burocrazia, Varroa e vendita su quattro strumenti diversi non è la soluzione. BeeInnovative Hub è l'ecosistema che mancava.</p>
 
-    <!-- SOCIAL PROOF -->
-    <section class="social-proof">
-        <div class="hex-bg"></div>
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item scroll-animate">
-                    <div class="stat-number">75.000</div>
-                    <div class="stat-label">Apicoltori Italiani nel Settore</div>
-                </div>
-                <div class="stat-item scroll-animate">
-                    <div class="stat-number">79%</div>
-                    <div class="stat-label">Professionisti Commerciali</div>
-                </div>
-                <div class="stat-item scroll-animate">
-                    <div class="stat-number">1,6M</div>
-                    <div class="stat-label">Arnie Gestite in Italia</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="seg-wrap">
+    <div class="seg-track">
+      <button class="seg-btn active" onclick="switchSeg('bee')" id="btn-bee">Sono un Apicoltore</button>
+      <button class="seg-btn" onclick="switchSeg('ter')" id="btn-ter">Sono un Terzista</button>
+    </div>
+  </div>
 
-    <!-- PRICING SECTION -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header scroll-animate">
-                <h2>Piani di Abbonamento</h2>
-                <p>Scegli il piano più adatto alle tue esigenze. Tutti i piani includono accesso alla piattaforma base</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <!-- OPERAIA -->
-                <div class="pricing-card scroll-animate">
-                    <div class="pricing-tier">🐝 Operaia</div>
-                    <div class="pricing-price">€4,99<span>/mese</span></div>
-                    <div class="pricing-period">€49/anno (risparmi €10)</div>
-                    <ul class="pricing-features">
-                        <li>Directory laboratori verificati</li>
-                        <li>Comparatore prezzi analisi</li>
-                        <li>Database patologie con foto</li>
-                        <li>Calendario trattamenti varroa</li>
-                        <li>Accesso marketplace prodotti</li>
-                        <li>Video tutorial base</li>
-                    </ul>
-                    <a href="#contatti" class="btn btn-secondary">Inizia Gratis</a>
-                </div>
-                
-                <!-- FUCO - FEATURED -->
-                <div class="pricing-card featured scroll-animate">
-                    <div class="pricing-badge">⭐ PIÙ POPOLARE</div>
-                    <div class="pricing-tier">🐝 Fuco</div>
-                    <div class="pricing-price">€9,99<span>/mese</span></div>
-                    <div class="pricing-period">€89/anno (risparmi €30)</div>
-                    <ul class="pricing-features">
-                        <li>Tutto di Operaia +</li>
-                        <li>Sconti 5-10% su analisi laboratorio</li>
-                        <li>Dashboard monitoraggio salute</li>
-                        <li>Alert predittivi patologie</li>
-                        <li>Vetrina marketplace premium</li>
-                        <li>10 contatti commerciali/mese</li>
-                        <li>Webinar live mensili</li>
-                        <li>Community pro (200 apicoltori)</li>
-                    </ul>
-                    <a href="#contatti" class="btn btn-primary">Inizia Prova Gratuita</a>
-                </div>
-                
-                <!-- REGINA -->
-                <div class="pricing-card scroll-animate">
-                    <div class="pricing-tier">👑 Regina</div>
-                    <div class="pricing-price">€19,99<span>/mese</span></div>
-                    <div class="pricing-period">€179/anno (risparmi €60)</div>
-                    <ul class="pricing-features">
-                        <li>Tutto di Fuco +</li>
-                        <li>Sconti 15-20% su analisi</li>
-                        <li>Priority booking laboratori</li>
-                        <li>Multi-apiario management</li>
-                        <li>Strumenti IoT scontati 25%</li>
-                        <li>Account manager dedicato</li>
-                        <li>Accesso progetti ricerca</li>
-                        <li>Community elite top 50</li>
-                        <li>Masterclass trimestrali</li>
-                    </ul>
-                    <a href="#contatti" class="btn btn-primary">Contatta il Team</a>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="stats-strip">
+    <div class="stat-item"><span class="stat-n">75.000</span><span class="stat-l">apicoltori in Italia</span></div>
+    <div class="stat-item" id="stat-mid"><span class="stat-n">100%</span><span class="stat-l">cita Varroa come priorità</span></div>
+    <div class="stat-item"><span class="stat-n">0</span><span class="stat-l">piattaforme integrate esistono</span></div>
+  </div>
+</section>
 
-    <!-- CTA SECTION -->
-    <section class="cta-section" id="contatti">
-        <div class="hex-bg"></div>
-        <div class="cta-content scroll-animate">
-            <h2>Pronto a Rivoluzionare la Tua Apicoltura?</h2>
-            <p>Unisciti alla community di apicoltori che stanno già trasformando il settore</p>
-            
-            <form class="cta-form" id="ctaForm">
-                <input type="email" placeholder="La tua email" required>
-                <button type="submit" class="btn btn-primary">Inizia Gratis</button>
-            </form>
-        </div>
-    </section>
+<!-- ══════ SERVIZI ══════ -->
+<section class="section" id="servizi">
+  <div class="sec-label" id="srv-label">Cosa offriamo agli Apicoltori</div>
+  <h2 class="sec-h" id="srv-h">Seleziona <em>cosa ti interessa</em></h2>
+  <p class="sec-sub" id="srv-sub">Ogni click ci dice cosa costruire prima. Scegli liberamente — non c'è risposta sbagliata.</p>
 
-    <!-- FOOTER -->
-    <footer id="partnership">
-        <div class="footer-content">
-            <div class="footer-about">
-                <h3>BeeInnovative Hub</h3>
-                <p>La piattaforma nazionale che centralizza servizi, ricerca e innovazione per il settore apistico italiano.</p>
-                <div class="social-links">
-                    <a href="https://instagram.com/beeinnovative_hub" target="_blank">📷</a>
-                    <a href="mailto:beeinnovativehub@gmail.com">✉️</a>
-                    <a href="tel:+393497867230">📞</a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Servizi</h4>
-                <ul>
-                    <li><a href="#servizi">Analisi</a></li>
-                    <li><a href="#servizi">Marketplace</a></li>
-                    <li><a href="#servizi">E-Learning</a></li>
-                    <li><a href="#servizi">Monitoraggio</a></li>
-                    <li><a href="#servizi">Ricerca</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Partnership</h4>
-                <ul>
-                    <li><a href="#partnership">Diventa Partner</a></li>
-                    <li><a href="#partnership">Per Laboratori</a></li>
-                    <li><a href="#partnership">Per Università</a></li>
-                    <li><a href="#partnership">Per Associazioni</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Contatti</h4>
-                <ul>
-                    <li><a href="mailto:beeinnovativehub@gmail.com">beeinnovativehub@gmail.com</a></li>
-                    <li><a href="tel:+393497867230">+39 349 786 7230</a></li>
-                    <li><a href="https://instagram.com/beeinnovative_hub" target="_blank">@beeinnovative_hub</a></li>
-                    <li><a href="#">Roma, Italia</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 BeeInnovative Hub. Tutti i diritti riservati. | Fondato da Giovanni Turchetti & Chiara Di Tommaso</p>
-        </div>
-    </footer>
+  <div style="height:24px"></div>
+  <div class="grid-label"><span>Clicca tutto quello che vuoi</span></div>
+  <div class="intent-grid" id="intent-grid"></div>
+  <p class="sel-counter" id="sel-counter">Nessuna selezione · puoi sceglierne quanti vuoi</p>
+</section>
+</div><!-- /wrap -->
 
-    <!-- JAVASCRIPT -->
-    <script>
-        // =====================================
-        // MOBILE MENU TOGGLE
-        // =====================================
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-            });
-        });
-        
-        // =====================================
-        // HEADER SCROLL EFFECT
-        // =====================================
-        const header = document.getElementById('header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // =====================================
-        // SCROLL ANIMATIONS
-        // =====================================
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // =====================================
-        // SMOOTH SCROLL
-        // =====================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // =====================================
-        // FORM SUBMISSION
-        // =====================================
-        const ctaForm = document.getElementById('ctaForm');
-        
-        ctaForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = ctaForm.querySelector('input[type="email"]').value;
-            
-            // In produzione, qui invieresti i dati al backend
-            alert(`Grazie! Ti abbiamo inviato un'email a ${email} con i prossimi passi.`);
-            ctaForm.reset();
-        });
-        
-        // =====================================
-        // ANALYTICS (Placeholder)
-        // =====================================
-        // In produzione, integra Google Analytics o Plausible
-        console.log('🐝 BeeInnovative Hub - Website Loaded');
-    </script>
+<!-- ══════ ADV BANNER ══════ -->
+<div class="adv-section">
+<div class="wrap">
+  <p class="adv-label">Sponsorizzato</p>
+  <div class="adv-banner" onclick="trackAdv()" id="adv-banner">
+    <div class="adv-badge">ADV</div>
+    <div class="adv-logo">ApiLab<sub>®</sub></div>
+    <div class="adv-content">
+      <h3>Analisi del miele certificate ACCREDIA. Risultati in 5 giorni.</h3>
+      <p>Parametri fisico-chimici, melissopalinologia, residui di farmaci veterinari e metalli pesanti. Laboratorio accreditato con supporto consulenziale incluso.</p>
+      <div class="adv-tags">
+        <span class="adv-tag">Analisi miele</span>
+        <span class="adv-tag">Melissopalinologia</span>
+        <span class="adv-tag">Residui</span>
+        <span class="adv-tag">ACCREDIA</span>
+      </div>
+    </div>
+    <button class="adv-cta" onclick="event.stopPropagation();trackAdv()">Scopri il laboratorio →</button>
+  </div>
+</div>
+</div>
+
+<!-- ══════ CHI SIAMO ══════ -->
+<div class="wrap">
+<section class="section" id="chi-siamo">
+  <div class="sec-label reveal">Il team</div>
+  <h2 class="sec-h reveal reveal-d1">Chi c'è <em>dietro BIH</em></h2>
+  <p class="sec-sub reveal reveal-d2">Un biologo apicoltore e una comunicatrice d'impresa, con il supporto di vari partner italiani. Non consulenti: praticanti.</p>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">GT</div>
+      <div>
+        <div class="team-name">Giovanni Turchetti</div>
+        <div class="team-role">CEO & Co-fondatore</div>
+        <div class="team-bio">Biologo, apicoltore. Ha vissuto da dentro ogni problema che BIH risolve: frammentazione dei laboratori, taccuino su carta, Varroa scoperta in ritardo. La piattaforma è costruita da chi conosce il settore in prima persona.</div>
+      </div>
+    </div>
+    <div class="team-card reveal reveal-d1">
+      <div class="team-avatar">CD</div>
+      <div>
+        <div class="team-name">Chiara Di Tommaso</div>
+        <div class="team-role">Comunicazione & Co-fondatrice</div>
+        <div class="team-bio">Esperta di comunicazione d'impresa e marketing strategico. Coordina le relazioni con associazioni, stakeholder e media. Responsabile dell'identità di BIH e del programma aBEEnamenti — il tour regionale 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mission-box reveal">
+    <p>"BeeInnovative Hub nasce da una constatazione semplice: 75.000 apicoltori italiani usano cinque strumenti diversi per fare quello che una sola piattaforma integrata dovrebbe fare. Costruiamo quella piattaforma."</p>
+    <cite>— Giovanni Turchetti, CEO</cite>
+  </div>
+
+  <div class="partners-row reveal">
+    <div class="partner-badge">🎓 <strong>Università Federico II</strong> Napoli · Partner accademico</div>
+    <div class="partner-badge">🎓 <strong>Università di Bologna</strong> · Partner accademico</div>
+	<div class="partner-badge">🍄 <strong>MycoLab</strong> · Partner commerciale</div>
+	<div class="partner-badge">🍀 <strong>Leaf Botanicals</strong> · Partner commerciale</div>
+    <div class="partner-badge">🏆 <strong>RYLA Fare Impresa 2025–26</strong> · Programma selezionato</div>
+	 <div class="partner-badge">🏆 <strong>DCLAB - LazioInnova 2024</strong> · Programma svolto</div>
+    <div class="partner-badge">🐝 <strong>aBEEnamenti 2026</strong> · Tour regionale italiano</div>
+  </div>
+</section>
+
+<!-- ══════ ABBONAMENTI ══════ -->
+<section class="section" id="abbonamenti">
+  <div class="sec-label reveal">Piani di accesso</div>
+  <h2 class="sec-h reveal reveal-d1">Scegli il tuo <em>livello di accesso</em></h2>
+  <p class="sec-sub reveal reveal-d2">Prezzi indicativi per la fase beta. I fondatori avranno accesso permanente alle condizioni iniziali.</p>
+
+  <div class="pricing-grid">
+
+    <!-- LISTA ATTESA -->
+    <div class="pricing-card reveal">
+      <div class="pricing-seg" id="ps-1">Per Apicoltori · Base</div>
+      <div class="pricing-name">Lista d'Attesa</div>
+      <div class="pricing-price"><strong>€0</strong><span> / sempre</span></div>
+      <div class="pricing-desc">Entra subito, accedi per primo quando apriamo i moduli che hai selezionato.</div>
+      <ul class="pricing-features">
+        <li>Notifica prioritaria al lancio</li>
+        <li>Accesso beta limitato ai moduli scelti</li>
+        <li>Forum community pre-lancio</li>
+        <li>Voce nella roadmap (sondaggi riservati)</li>
+      </ul>
+      <button class="pricing-btn secondary" onclick="trackPricing('lista_attesa');scrollToForm()">Entra nella lista →</button>
+    </div>
+
+    <!-- APICOLTORE / TERZISTA BASE -->
+    <div class="pricing-card featured reveal reveal-d1" id="pc-featured">
+      <div class="pricing-popular" id="pc-popular">Più scelto in beta</div>
+      <div class="pricing-seg" id="ps-2">Per Apicoltori · Completo</div>
+      <div class="pricing-name" id="pc-name">Piano Apicoltore</div>
+      <div class="pricing-price"><strong id="pc-price">€12,90</strong><span> / mese</span></div>
+      <div class="pricing-desc" id="pc-desc">Accesso completo a tutti i moduli: analisi, monitoraggio, burocrazia, e-learning, marketplace.</div>
+      <ul class="pricing-features" id="pc-features">
+        <li>Analisi laboratorio — richieste illimitate</li>
+        <li>Monitoraggio IoT arnie (fino a 20 arnie)</li>
+        <li>Taccuino apistico digitale + BDA</li>
+        <li>E-learning e webinar accreditati</li>
+        <li>Consulenza burocratica prioritaria</li>
+        <li>Marketplace per vendita prodotti</li>
+      </ul>
+      <button class="pricing-btn primary" onclick="trackPricing('piano_base');scrollToForm()">Voglio questo piano →</button>
+    </div>
+
+    <!-- PRO / TERZISTA PRO -->
+    <div class="pricing-card reveal reveal-d2" id="pc-pro">
+      <div class="pricing-seg" id="ps-3">Per Apicoltori · Avanzato</div>
+      <div class="pricing-name" id="pc-pro-name">Piano Pro</div>
+      <div class="pricing-price"><strong id="pc-pro-price">€24,90</strong><span> / mese</span></div>
+      <div class="pricing-desc" id="pc-pro-desc">Tutto il Piano Apicoltore più accesso a ricerca collaborativa, IoT illimitato e analytics avanzato.</div>
+      <ul class="pricing-features" id="pc-pro-features">
+        <li>Tutto il Piano Apicoltore incluso</li>
+        <li>IoT illimitato — nessun limite arnie</li>
+        <li>Accesso a sperimentazioni accademiche</li>
+        <li>Analytics apiario avanzato + report</li>
+        <li>Supporto tecnico dedicato</li>
+        <li>Accesso anticipato a ogni nuovo modulo</li>
+      </ul>
+      <button class="pricing-btn secondary" onclick="trackPricing('piano_pro');scrollToForm()">Voglio il Piano Pro →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ FORM ══════ -->
+<section class="section" id="signup">
+  <div class="form-section">
+    <div class="sec-label" style="text-align:center" class="reveal">Accesso anticipato</div>
+    <h2 class="sec-h reveal" style="text-align:center;font-size:1.9rem">Entra nella lista.<br><em>Prima di tutti.</em></h2>
+    <p style="text-align:center;font-size:.88rem;color:var(--muted);margin:10px 0 28px;font-weight:300;line-height:1.6">
+      Ti avvisiamo quando il tuo modulo è pronto.<br>Zero spam. Solo l'email che conta.
+    </p>
+
+    <div id="form-area">
+      <div class="interests-preview" id="interests-preview">
+        <div class="ip-label">Hai selezionato</div>
+        <div class="ip-tags" id="ip-tags"></div>
+      </div>
+
+      <form id="signup-form" action="https://formspree.io/f/XXXXXXXX" method="POST">
+        <!-- TRACKING FIELDS -->
+        <input type="hidden" name="source"              id="f-source"    value="direct">
+        <input type="hidden" name="segment"             id="f-segment"   value="bee">
+        <input type="hidden" name="segment_changed"     id="f-seg-chg"   value="no">
+        <input type="hidden" name="primary_service"     id="f-primary"   value="">
+        <input type="hidden" name="all_services"        id="f-all"       value="">
+        <input type="hidden" name="services_count"      id="f-count"     value="0">
+        <input type="hidden" name="pricing_clicked"     id="f-pricing"   value="">
+        <input type="hidden" name="purchase_intent"     id="f-purchase"  value="no">
+        <input type="hidden" name="ad_clicked"          id="f-adv"       value="no">
+        <input type="hidden" name="scroll_depth_pct"    id="f-scroll"    value="">
+        <input type="hidden" name="time_on_page_sec"    id="f-time"      value="">
+        <input type="hidden" name="time_first_click_sec" id="f-ttfc"     value="">
+        <input type="hidden" name="click_sequence"      id="f-clicks"    value="">
+        <!-- EMAIL -->
+        <input type="email" name="email" placeholder="La tua email" required autocomplete="email">
+        <button type="submit" id="submit-btn">Entra nella lista d'attesa →</button>
+      </form>
+      <p class="form-micro">Nessuna vendita di dati · <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <div id="success-msg">
+      <span class="s-icon">⬡</span>
+      <h2>Sei nella lista.</h2>
+      <p>Ti contatteremo tra i primi quando il modulo che hai selezionato sarà disponibile. Se conosci altri apicoltori o terzisti, condividi il link.</p>
+    </div>
+  </div>
+</section>
+</div><!-- /wrap -->
+
+<!-- STICKY INTENT BAR -->
+<div id="intent-bar">
+  <div class="ib-left">
+    <div class="ib-label">Hai selezionato</div>
+    <div class="ib-modules" id="ib-modules">—</div>
+  </div>
+  <button class="ib-cta" onclick="scrollToForm()">Entra nella lista →</button>
+</div>
+
+<footer>
+  <span>© 2025 BeeInnovative Hub — Startup in fase di costituzione</span>
+  <span>beeinnovativehub@gmail.com</span>
+  <span><a href="#">Privacy</a> · <a href="#">Cookie</a></span>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════
+   JAVASCRIPT — Complete intent tracking engine
+══════════════════════════════════════════════════════ -->
+<script>
+/* ─── MODULE DATA ──────────────────────────────────────── */
+const MODULES = {
+  bee:[
+    {id:'monitoraggio', rank:'Priorità #1 nel settore', icon:'📡', title:'Monitoraggio & Varroa', desc:'Sensori IoT su ogni arnia. Allerta precoce su Varroa destructor. Sciamatura anticipata. Nessuna colonia persa per un ritardo.'},
+    {id:'analisi',      rank:'Priorità #2 nel settore', icon:'🔬', title:'Analisi di laboratorio', desc:'Spedisci il campione, ricevi il referto digitale in 72h. Laboratori certificati, nessuna intermediazione cartacea.'},
+    {id:'consulenza',   rank:'Priorità #3 nel settore', icon:'📋', title:'Consulenza tecnica & burocratica', desc:'Taccuino apistico digitale, gestione BDA, normative PSN e regionali. Tutto in un punto di accesso.'},
+    {id:'elearning',    rank:'Priorità #4 nel settore', icon:'📚', title:'E-learning & formazione', desc:'Corsi accreditati, webinar con esperti universitari, forum tecnico. Formazione continua senza spostarti.'},
+    {id:'certificazioni',rank:'Richiesta crescente',   icon:'🏷️', title:'Certificazioni di prodotto', desc:'Supporto per DOP, IGP, biologico e doc. I laboratori partner gestiscono la documentazione tecnica per te.'},
+    {id:'marketplace',  rank:'Canale di vendita diretto',icon:'🛒', title:'Marketplace prodotti', desc:'Vendi miele, cera, propoli e nuclei a buyer B2B e consumatori finali. Zero intermediari generalisti.'},
+  ],
+  ter:[
+    {id:'marketplace',  rank:'Prima scelta nel settore',icon:'🗺️', title:'Visibilità nazionale', desc:'I tuoi servizi e prodotti visibili a 75.000 apicoltori. Clienti che già cercano ciò che offri, senza costi marketing.'},
+    {id:'analisi',      rank:'Alta domanda non coperta',icon:'📥', title:'Richieste analisi digitali', desc:'Ordini strutturati e tracciabili. L\'apicoltore compila online, tu ricevi tutto standardizzato. Niente telefonate.'},
+    {id:'rete',         rank:'Problema citato da tutti', icon:'🔗', title:'Rete terzisti nazionale', desc:'Espandi oltre la tua provincia. Gli apicoltori cercano terzisti certificati in ogni regione — sii trovabile.'},
+    {id:'ricerca',      rank:'Interesse emergente',     icon:'🔭', title:'Ricerca collaborativa', desc:'Collabora con università e istituti. I tuoi dati di campo valorizzati in pubblicazioni e sperimentazioni condivise.'},
+    {id:'refertazione', rank:'Efficienza operativa',    icon:'📊', title:'Refertazione digitale', desc:'Invia referti standardizzati in piattaforma. Storico tracciabile per ogni cliente. Addio PDF via email.'},
+    {id:'profilo',      rank:'Trust e credibilità',     icon:'🏷️', title:'Profilo verificato', desc:'Certificazioni, specializzazioni e area geografica in evidenza. Costruisci credibilità prima ancora del contatto.'},
+  ]
+};
+
+const PRICING_TER = {
+  featured:{ name:'Piano Terzista', price:'€19,90', desc:'Profilo verificato, marketplace, richieste analisi digitali e rete nazionale.', features:['Profilo verificato con certificazioni','Marketplace — visibilità nazionale','Ricezione ordini analisi digitali','Refertazione standardizzata integrata','Statistiche clienti e conversioni','Supporto onboarding dedicato'] },
+  pro:{ name:'Piano Terzista Pro', price:'€34,90', desc:'Tutto il Piano Terzista più accesso a ricerca collaborativa, analytics avanzato e gestione multi-sede.', features:['Tutto il Piano Terzista incluso','Accesso a progetti di ricerca universitaria','Analytics avanzato — trend domanda','Gestione multi-punto operativo','API per integrazione sistemi gestionali','Priority support dedicato'] }
+};
+
+/* ─── STATE ────────────────────────────────────────────── */
+let seg = 'bee';
+let segChanged = false;
+let selected = [];
+let firstClickTime = null;
+let pricingClicked = '';
+let purchaseIntent = false;
+let advClicked = false;
+let clickSequence = [];
+const t0 = Date.now();
+
+/* ─── URL PARAMS ───────────────────────────────────────── */
+(function(){
+  const p = new URLSearchParams(location.search);
+  const src = p.get('src') || 'direct';
+  const segParam = p.get('seg');
+  document.getElementById('f-source').value = src;
+  if(src === 'q' || src === 'questionario'){
+    document.getElementById('src-badge').textContent = '✓ Questionario completato · Accesso anticipato';
+  }
+  if(segParam === 'ter'){ switchSeg('ter'); }
+})();
+
+/* ─── SCROLL PROGRESS ──────────────────────────────────── */
+window.addEventListener('scroll', ()=>{
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+/* ─── INTERSECTION OBSERVER ────────────────────────────── */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in') });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ─── RENDER GRID ──────────────────────────────────────── */
+function renderGrid(s){
+  const grid = document.getElementById('intent-grid');
+  grid.innerHTML='';selected=[];updateUI();
+  MODULES[s].forEach((m,i)=>{
+    const c = document.createElement('div');
+    c.className = 'icard';
+    c.dataset.id = m.id;
+    c.dataset.title = m.title;
+    c.innerHTML = `
+      <div class="icard-check"><svg viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></div>
+      <div class="icard-rank">${m.rank}</div>
+      <span class="icard-icon">${m.icon}</span>
+      <h3>${m.title}</h3>
+      <p>${m.desc}</p>`;
+    c.addEventListener('click',()=>toggleCard(c,m));
+    grid.appendChild(c);
+    setTimeout(()=>c.classList.add('in'), 50 + i*60);
+  });
+}
+
+/* ─── TOGGLE CARD ──────────────────────────────────────── */
+function toggleCard(card, m){
+  if(!firstClickTime){ firstClickTime = Math.round((Date.now()-t0)/1000); document.getElementById('f-ttfc').value = firstClickTime+'s'; }
+  const isSel = card.classList.contains('selected');
+  if(isSel){ card.classList.remove('selected'); selected=selected.filter(id=>id!==m.id); }
+  else{ card.classList.add('selected'); selected.push(m.id); }
+  addClick('service', m.id);
+  updateUI();
+}
+
+/* ─── TRACK ANY CLICK ──────────────────────────────────── */
+function track(type, val){
+  addClick(type, val);
+}
+function addClick(type, val){
+  const dt = Math.round((Date.now()-t0)/1000);
+  clickSequence.push(`${type}:${val}@${dt}s`);
+  document.getElementById('f-clicks').value = clickSequence.join('|');
+}
+function trackAdv(){
+  advClicked=true;
+  document.getElementById('f-adv').value = 'yes:apilab';
+  addClick('adv','apilab');
+}
+function trackPricing(plan){
+  pricingClicked = plan;
+  purchaseIntent = true;
+  document.getElementById('f-pricing').value = plan;
+  document.getElementById('f-purchase').value = 'yes';
+  addClick('pricing', plan);
+}
+
+/* ─── UPDATE UI ────────────────────────────────────────── */
+function updateUI(){
+  const n = selected.length;
+  const counter = document.getElementById('sel-counter');
+  const bar = document.getElementById('intent-bar');
+  const preview = document.getElementById('interests-preview');
+  const tags = document.getElementById('ip-tags');
+  const submitBtn = document.getElementById('submit-btn');
+  const mods = MODULES[seg];
+
+  counter.innerHTML = n===0 ? 'Nessuna selezione · puoi sceglierne quanti vuoi' :
+    `<strong>${n}</strong> ${n===1?'servizio selezionato':'servizi selezionati'} — scorri per lasciare la tua email`;
+  counter.classList.toggle('has-sel', n>0);
+
+  bar.classList.toggle('visible', n>0);
+  if(n>0){
+    document.getElementById('ib-modules').textContent =
+      selected.map(id=>mods.find(m=>m.id===id)?.title||id).join(' · ');
+  }
+
+  preview.classList.toggle('visible', n>0);
+  if(n>0){
+    tags.innerHTML = selected.map(id=>{
+      const m=mods.find(m=>m.id===id);
+      return `<span class="ip-tag">${m?.icon||''} ${m?.title||id}</span>`;
+    }).join('');
+  }
+
+  document.getElementById('f-primary').value = selected[0]||'';
+  document.getElementById('f-all').value = selected.join(',');
+  document.getElementById('f-count').value = n;
+
+  if(n>0) submitBtn.textContent = `Avvisami su ${n===1?'questo servizio':'questi '+n+' servizi'} →`;
+  else submitBtn.textContent = 'Entra nella lista d\'attesa →';
+}
+
+/* ─── SWITCH SEGMENT ───────────────────────────────────── */
+function switchSeg(s){
+  if(seg !== s){ segChanged=true; document.getElementById('f-seg-chg').value='yes'; }
+  seg=s;
+  document.getElementById('btn-bee').classList.toggle('active', s==='bee');
+  document.getElementById('btn-ter').classList.toggle('active', s==='ter');
+  document.getElementById('f-segment').value=s;
+  addClick('segment', s);
+
+  if(s==='bee'){
+    document.getElementById('hero-h1').innerHTML='L\'apicoltura italiana<br>merita <em>strumenti migliori.</em>';
+    document.getElementById('hero-sub').textContent='Gestire analisi, burocrazia, Varroa e vendita su quattro strumenti diversi non è la soluzione. BeeInnovative Hub è l\'ecosistema che mancava.';
+    document.getElementById('stat-mid').innerHTML='<span class="stat-n">100%</span><span class="stat-l">cita Varroa come priorità</span>';
+    document.getElementById('srv-label').textContent='Cosa offriamo agli Apicoltori';
+    document.getElementById('srv-h').innerHTML='Seleziona <em>cosa ti interessa</em>';
+    document.getElementById('srv-sub').textContent='Ogni click ci dice cosa costruire prima. Scegli liberamente — non c\'è risposta sbagliata.';
+    // pricing
+    document.getElementById('ps-2').textContent='Per Apicoltori · Completo';
+    document.getElementById('pc-name').textContent='Piano Apicoltore';
+    document.getElementById('pc-price').textContent='€12,90';
+    document.getElementById('pc-desc').textContent='Accesso completo a tutti i moduli: analisi, monitoraggio, burocrazia, e-learning, marketplace.';
+    document.getElementById('pc-features').innerHTML=['Analisi laboratorio — richieste illimitate','Monitoraggio IoT arnie (fino a 20 arnie)','Taccuino apistico digitale + BDA','E-learning e webinar accreditati','Consulenza burocratica prioritaria','Marketplace per vendita prodotti'].map(f=>`<li>${f}</li>`).join('');
+    document.getElementById('ps-3').textContent='Per Apicoltori · Avanzato';
+    document.getElementById('pc-pro-name').textContent='Piano Pro';
+    document.getElementById('pc-pro-price').textContent='€24,90';
+    document.getElementById('pc-pro-desc').textContent='Tutto il Piano Apicoltore più IoT illimitato, ricerca collaborativa e analytics avanzato.';
+    document.getElementById('pc-pro-features').innerHTML=['Tutto il Piano Apicoltore incluso','IoT illimitato — nessun limite arnie','Accesso a sperimentazioni accademiche','Analytics apiario avanzato + report','Supporto tecnico dedicato','Accesso anticipato a ogni nuovo modulo'].map(f=>`<li>${f}</li>`).join('');
+    document.getElementById('ps-1').textContent='Per Apicoltori · Base';
+  } else {
+    document.getElementById('hero-h1').innerHTML='Dove vuoi portare<br><em>la tua attività</em> quest\'anno?';
+    document.getElementById('hero-sub').textContent='Visibilità limitata, comunicazione difficile, clienti solo in provincia. BeeInnovative Hub ti dà il canale che manca per far crescere il tuo business.';
+    document.getElementById('stat-mid').innerHTML='<span class="stat-n">5×</span><span class="stat-l">più richieste con canale digitale</span>';
+    document.getElementById('srv-label').textContent='Cosa puoi offrire su BIH · Terzisti';
+    document.getElementById('srv-h').innerHTML='Cosa vuoi <em>portare in piattaforma?</em>';
+    document.getElementById('srv-sub').textContent='Seleziona i servizi che ti interessano. Costruiamo il tuo spazio su BIH a partire da quello che conta per te.';
+    // pricing ter
+    const t = PRICING_TER;
+    document.getElementById('ps-1').textContent='Per Terzisti · Base';
+    document.getElementById('ps-2').textContent='Per Terzisti · Completo';
+    document.getElementById('pc-name').textContent=t.featured.name;
+    document.getElementById('pc-price').textContent=t.featured.price;
+    document.getElementById('pc-desc').textContent=t.featured.desc;
+    document.getElementById('pc-features').innerHTML=t.featured.features.map(f=>`<li>${f}</li>`).join('');
+    document.getElementById('ps-3').textContent='Per Terzisti · Avanzato';
+    document.getElementById('pc-pro-name').textContent=t.pro.name;
+    document.getElementById('pc-pro-price').textContent=t.pro.price;
+    document.getElementById('pc-pro-desc').textContent=t.pro.desc;
+    document.getElementById('pc-pro-features').innerHTML=t.pro.features.map(f=>`<li>${f}</li>`).join('');
+  }
+  renderGrid(s);
+}
+
+/* ─── SCROLL TO FORM ───────────────────────────────────── */
+function scrollToForm(){
+  document.getElementById('signup').scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>document.querySelector('#signup-form input[type=email]').focus(), 600);
+}
+
+/* ─── FORM SUBMIT ──────────────────────────────────────── */
+document.getElementById('signup-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const h = document.documentElement;
+  document.getElementById('f-scroll').value = Math.round((h.scrollTop/(h.scrollHeight-h.clientHeight))*100)+'%';
+  document.getElementById('f-time').value = Math.round((Date.now()-t0)/1000)+'s';
+  btn.textContent='Invio…'; btn.disabled=true;
+  try{
+    const res=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{Accept:'application/json'}});
+    if(res.ok){
+      document.getElementById('form-area').style.display='none';
+      document.getElementById('success-msg').style.display='block';
+      document.getElementById('intent-bar').classList.remove('visible');
+    } else { btn.textContent='Errore — riprova'; btn.disabled=false; }
+  } catch{ btn.textContent='Errore di rete'; btn.disabled=false; }
+});
+
+/* ─── INIT ─────────────────────────────────────────────── */
+renderGrid('bee');
+</script>
 </body>
 </html>
