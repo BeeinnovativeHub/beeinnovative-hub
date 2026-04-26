@@ -3,19 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeInnovative Hub</title>
+    <title>Beeinnovative Hub | Smoke Test</title>
+
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wfdpjxp8qp");
+    </script>
+
     <style>
-        body { font-family: 'Lato', sans-serif; margin: 0; background: #1a1a1a; color: white; text-align: center; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: url('tua-immagine.jpg') no-repeat center center/cover; }
-        h1 { font-size: 4rem; letter-spacing: 5px; }
-        p { font-size: 1.5rem; }
+        :root { --primary: #fbbf24; --dark: #1f2937; --light: #f3f4f6; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; color: var(--dark); background: white; line-height: 1.6; }
+        
+        header { padding: 1.5rem; display: flex; justify-content: center; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
+        .logo span { color: var(--primary); }
+
+        .hero { padding: 100px 20px; text-align: center; background: linear-gradient(180deg, #fff 0%, var(--light) 100%); }
+        h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1.5px; }
+        p.subtitle { font-size: 1.2rem; color: #4b5563; max-width: 600px; margin: 0 auto 2rem; }
+
+        .cta-container { margin-top: 2rem; }
+        .btn { 
+            background: var(--dark); color: white; padding: 18px 36px; 
+            text-decoration: none; border-radius: 8px; font-weight: 600; 
+            transition: all 0.3s ease; display: inline-block;
+        }
+        .btn:hover { background: var(--primary); color: var(--dark); transform: translateY(-2px); }
+
+        .features { padding: 80px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
+        .card { padding: 30px; border: 1px solid #e5e7eb; border-radius: 12px; text-align: center; }
+        
+        footer { padding: 40px; text-align: center; font-size: 0.9rem; color: #9ca3af; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>BEEINNOVATIVE HUB</h1>
-        <p>Il motore di ricerca dedicato all'apicoltura italiana</p>
-        <p>UNA SOLA PIATTAFORMA PER TUTTI I SERVIZI</p>
-    </div>
+
+    <header>
+        <div class="logo">BEEINNOVATIVE<span>HUB</span></div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>L'innovazione è un alveare.</h1>
+            <p class="subtitle">Stiamo costruendo il futuro dei servizi digitali. Beeinnovative Hub è lo spazio dove le idee prendono il volo.</p>
+            <div class="cta-container">
+                <a href="https://wa.me/tuonumero" class="btn">Parla con un esperto</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="card">
+                <h3>Analisi Strategica</h3>
+                <p>Capiamo i dati per guidare le tue decisioni di business.</p>
+            </div>
+            <div class="card">
+                <h3>Sviluppo Agile</h3>
+                <p>Creiamo soluzioni veloci, scalabili e pronte per il mercato.</p>
+            </div>
+            <div class="card">
+                <h3>Design UX/UI</h3>
+                <p>Interfacce pensate per convertire i visitatori in clienti.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Beeinnovative Hub - Smoke Test Project
+    </footer>
+
 </body>
 </html>
