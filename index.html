@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beeinnovative Hub | Smoke Test</title>
-
+    <title>BeeInnovative Hub - Piattaforma Apicoltura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -14,64 +15,76 @@
     </script>
 
     <style>
-        :root { --primary: #fbbf24; --dark: #1f2937; --light: #f3f4f6; }
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; color: var(--dark); background: white; line-height: 1.6; }
-        
-        header { padding: 1.5rem; display: flex; justify-content: center; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
-        .logo span { color: var(--primary); }
-
-        .hero { padding: 100px 20px; text-align: center; background: linear-gradient(180deg, #fff 0%, var(--light) 100%); }
-        h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: -1.5px; }
-        p.subtitle { font-size: 1.2rem; color: #4b5563; max-width: 600px; margin: 0 auto 2rem; }
-
-        .cta-container { margin-top: 2rem; }
-        .btn { 
-            background: var(--dark); color: white; padding: 18px 36px; 
-            text-decoration: none; border-radius: 8px; font-weight: 600; 
-            transition: all 0.3s ease; display: inline-block;
-        }
-        .btn:hover { background: var(--primary); color: var(--dark); transform: translateY(-2px); }
-
-        .features { padding: 80px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
-        .card { padding: 30px; border: 1px solid #e5e7eb; border-radius: 12px; text-align: center; }
-        
-        footer { padding: 40px; text-align: center; font-size: 0.9rem; color: #9ca3af; border-top: 1px solid #eee; }
+        .hero-bg { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; }
     </style>
 </head>
-<body>
+<body class="bg-white font-sans text-gray-800">
 
-    <header>
-        <div class="logo">BEEINNOVATIVE<span>HUB</span></div>
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b p-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <img src="https://lh3.googleusercontent.com/drive-viewer/AKG7b0V..." alt="Logo" class="h-10 w-10">
+            <span class="font-bold text-xl tracking-tighter">BEEINNOVATIVE <span class="text-amber-500">HUB</span></span>
+        </div>
+        <div class="flex gap-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>L'innovazione è un alveare.</h1>
-            <p class="subtitle">Stiamo costruendo il futuro dei servizi digitali. Beeinnovative Hub è lo spazio dove le idee prendono il volo.</p>
-            <div class="cta-container">
-                <a href="https://wa.me/tuonumero" class="btn">Parla con un esperto</a>
-            </div>
-        </section>
+    <section class="hero-bg h-screen flex flex-col justify-center items-center text-center text-white px-4">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-widest uppercase">Beeinnovative Hub</h1>
+        <p class="text-lg md:text-xl max-w-2xl mb-8 italic">Il motore di ricerca dedicato all'apicoltura italiana</p>
+        <p class="text-xl md:text-2xl font-semibold mb-8 uppercase tracking-wider">Una sola piattaforma per tutti i servizi</p>
+        <a href="#test" class="bg-gray-800 hover:bg-amber-600 text-white px-8 py-3 rounded-md font-bold transition-colors uppercase">
+            Scopri Beeinnovative Hub
+        </a>
+        <div class="mt-12 animate-bounce">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+    </section>
 
-        <section class="features">
-            <div class="card">
-                <h3>Analisi Strategica</h3>
-                <p>Capiamo i dati per guidare le tue decisioni di business.</p>
+    <section class="py-20 bg-gray-50 px-6 text-center">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="p-8 bg-white shadow-lg rounded-xl">
+                <h2 class="text-4xl font-black text-amber-500 mb-2">SCOPRI</h2>
+                <p class="text-sm text-gray-500 uppercase">Il panorama nazionale delle aziende</p>
             </div>
-            <div class="card">
-                <h3>Sviluppo Agile</h3>
-                <p>Creiamo soluzioni veloci, scalabili e pronte per il mercato.</p>
+            <div class="p-8 bg-white shadow-lg rounded-xl border-t-4 border-amber-500">
+                <h2 class="text-4xl font-black text-gray-800 mb-2">SCEGLI</h2>
+                <p class="text-sm text-gray-500 uppercase">Un'esperienza personalizzata</p>
             </div>
-            <div class="card">
-                <h3>Design UX/UI</h3>
-                <p>Interfacce pensate per convertire i visitatori in clienti.</p>
+            <div class="p-8 bg-white shadow-lg rounded-xl">
+                <h2 class="text-4xl font-black text-amber-500 mb-2">CERCA</h2>
+                <p class="text-sm text-gray-500 uppercase">Per settore specifico</p>
             </div>
-        </section>
-    </main>
+            <div class="p-8 bg-white shadow-lg rounded-xl">
+                <h2 class="text-4xl font-black text-gray-800 mb-2">VALUTA</h2>
+                <p class="text-sm text-gray-500 uppercase">Opzioni e servizi</p>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        &copy; 2026 Beeinnovative Hub - Smoke Test Project
+    <section id="test" class="py-20 px-6 bg-white">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 italic">Il sito sarà disponibile al termine della fase di validazione</h2>
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-6 text-left mb-10">
+                <p class="mb-4 text-gray-700">La landing page è stata sviluppata per lo <strong>smoke test</strong> con l'obiettivo di validare l'interesse reale degli utenti.</p>
+                <p class="text-gray-600 text-sm italic">Il sito non è ancora attivo in quanto la piattaforma attualmente è in fase di programmazione.</p>
+            </div>
+            <p class="text-xl font-bold mb-8 uppercase">Grazie per averci aiutato</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLS..." class="bg-gray-800 text-white px-10 py-4 rounded font-black hover:bg-black transition uppercase tracking-tighter">
+                Iscriviti alla Waiting List
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-zinc-900 text-white py-12 px-6 text-center">
+        <div class="mb-6">
+            <p class="text-xl mb-2">347 7867230</p>
+            <p class="text-amber-500 font-medium">beeinnovativehub@gmail.com</p>
+        </div>
+        <div class="flex justify-center gap-6 opacity-75">
+            <span>Instagram</span> <span>Facebook</span> <span>Telegram</span>
+        </div>
     </footer>
 
 </body>
