@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeInnovative Hub - Info</title>
+    <title>BeeInnovative Hub - Info & Servizi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* RESET E STILI BASE */
-        body, h1, p, ul {
+        body, h1, p, ul, li {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -23,7 +23,7 @@
             min-height: 100vh;
         }
 
-        /* HEADER NERO */
+        /* HEADER NERO - COERENTE CON HOME */
         header {
             background-color: #000000;
             color: #ffffff;
@@ -52,29 +52,77 @@
             font-weight: 300;
         }
 
+        /* NAVIGAZIONE E DROPDOWN */
         nav ul {
             list-style: none;
             display: flex;
-            gap: 15px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
         }
 
         nav a {
             color: #ffffff;
             text-decoration: none;
             font-size: 0.85rem;
-            padding: 5px 10px;
+            padding: 10px 15px;
             border-radius: 4px;
+            transition: 0.3s;
         }
 
         nav a:hover {
             color: #8ab4f8;
         }
 
+        /* Menu a tendina */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 280px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1100;
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu a {
+            color: #3c4043 !important;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            display: block;
+            border-radius: 0;
+            text-align: left;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f3f4;
+            color: #8ab4f8 !important;
+        }
+
+        nav li:hover .dropdown-menu {
+            display: block;
+        }
+
+        .fa-chevron-down {
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+
         /* CONTENUTO CENTRALE */
         .main-content {
             flex: 1;
-            margin-top: 120px;
-            margin-bottom: 60px;
+            margin-top: 150px; /* Spazio generoso per l'header fisso */
+            margin-bottom: 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -84,25 +132,26 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: #3c4043;
             margin-bottom: 25px;
             text-transform: uppercase;
-            line-height: 1.2;
+            line-height: 1.3;
+            max-width: 900px;
         }
 
         .description {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #5f6368;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             max-width: 800px;
         }
 
         .thanks-msg {
             font-size: 1.3rem;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             color: #3c4043;
         }
 
@@ -110,14 +159,17 @@
         .btn-waitinglist {
             background-color: #3c4043;
             color: white;
-            padding: 15px 30px;
+            padding: 18px 36px;
             text-decoration: none;
             font-size: 1rem;
             font-weight: bold;
             border-radius: 5px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             transition: background 0.3s;
             display: inline-block;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-waitinglist:hover {
@@ -127,10 +179,11 @@
         .footer-note {
             font-size: 1rem;
             color: #3c4043;
-            margin-top: 10px;
+            line-height: 1.6;
+            max-width: 600px;
         }
 
-        /* FOOTER */
+        /* FOOTER - IDENTICO ALLA HOME */
         footer {
             background-color: #3c4043;
             color: white;
@@ -149,6 +202,10 @@
             font-size: 0.8rem;
         }
 
+        .footer-links a:hover {
+            color: white;
+        }
+
         .socials {
             display: flex;
             justify-content: center;
@@ -160,6 +217,14 @@
         .socials a {
             color: white;
             text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; }
+            .site-title { display: none; }
+            h1 { font-size: 1.7rem; }
+            .main-content { margin-top: 120px; }
         }
     </style>
 </head>
@@ -175,7 +240,21 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="info.html">Chi siamo</a></li>
-                <li><a href="info.html">Servizi</a></li>
+                
+                <li>
+                    <a href="#">Servizi <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="info.html">E-learning</a></li>
+                        <li><a href="info.html">Monitoraggio della Salute</a></li>
+                        <li><a href="info.html">Consulenze Tecniche e Burocratiche</a></li>
+                        <li><a href="info.html">Analisi</a></li>
+                        <li><a href="info.html">Certificazioni</a></li>
+                        <li><a href="info.html">Marketplace</a></li>
+                        <li><a href="info.html">Ricerca</a></li>
+                        <li><a href="info.html">Assistenza Tecnica</a></li>
+                    </ul>
+                </li>
+                
                 <li><a href="info.html">Contatti</a></li>
                 <li><a href="info.html">Accedi</a></li>
                 <li><a href="info.html"><i class="fas fa-search"></i></a></li>
@@ -193,12 +272,13 @@
 
         <p class="thanks-msg"><b>Grazie per averci aiutato</b></p>
 
-        <a href="URL_DEL_TUO_GOOGLE_FORM_QUI" target="_blank" class="btn-waitinglist">
+        <a href="INSERISCI_QUI_IL_TUO_LINK_GOOGLE_FORM" target="_blank" class="btn-waitinglist">
             ISCRIVITI ALLA WAITING LIST
         </a>
 
         <p class="footer-note">
-            La piattaforma è in fase di sviluppo. Lascia la tua <b>mail</b> per essere ricontattato al momento del lancio.
+            La piattaforma è in fase di sviluppo. <br>
+            Lascia la tua <b>mail</b> per essere ricontattato al momento del lancio.
         </p>
     </div>
 
