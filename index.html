@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* RESET E STILI BASE */
-        body, h1, h2, p, ul { margin: 0; padding: 0; box-sizing: border-box; }
+        body, h1, h2, p, ul, li { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', Arial, sans-serif; background-color: #ffffff; color: #3c4043; }
 
         /* HEADER NERO - STILE GOOGLE SITES */
@@ -27,9 +27,44 @@
         .logo-area img { height: 35px; }
         .site-title { font-size: 1.2rem; font-weight: 300; }
 
-        nav ul { list-style: none; display: flex; gap: 15px; }
+        /* NAVIGAZIONE E DROPDOWN */
+        nav ul { list-style: none; display: flex; gap: 15px; align-items: center; }
+        nav li { position: relative; } 
+        
         nav a { color: #ffffff; text-decoration: none; font-size: 0.85rem; padding: 5px 10px; border-radius: 4px; }
         nav a.active, nav a:hover { color: #8ab4f8; }
+
+        /* Stili specifici per la tendina */
+        .dropdown-menu {
+            display: none; 
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 260px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1100;
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu li { width: 100%; display: block; }
+
+        .dropdown-menu a {
+            color: #3c4043 !important; 
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            display: block;
+            border-radius: 0;
+            text-align: left;
+        }
+
+        .dropdown-menu a:hover { background-color: #f1f3f4; color: #8ab4f8 !important; }
+
+        /* Mostra al passaggio del mouse */
+        nav li:hover .dropdown-menu { display: block; }
+        
+        .fa-chevron-down { font-size: 0.7rem; margin-left: 5px; }
 
         /* HERO SECTION */
         .hero {
@@ -126,7 +161,19 @@
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="info.html">Chi siamo</a></li>
-                <li><a href="info.html">Servizi</a></li>
+                <li>
+                    <a href="#">Servizi <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="info.html">E-learning</a></li>
+                        <li><a href="info.html">Monitoraggio della Salute</a></li>
+                        <li><a href="info.html">Consulenze Tecniche e Burocratiche</a></li>
+                        <li><a href="info.html">Analisi</a></li>
+                        <li><a href="info.html">Certificazioni</a></li>
+                        <li><a href="info.html">Marketplace</a></li>
+                        <li><a href="info.html">Ricerca</a></li>
+                        <li><a href="info.html">Assistenza Tecnica</a></li>
+                    </ul>
+                </li>
                 <li><a href="info.html">Contatti</a></li>
                 <li><a href="info.html">Accedi</a></li>
                 <li><a href="info.html"><i class="fas fa-search"></i></a></li>
@@ -136,7 +183,7 @@
 
     <section class="hero">
         <h1>BEEINNOVATIVE HUB</h1>
-        <p class="subtitle">Il motore di ricerca dedicato all'apicoltura italiana</p>
+        <p class="subtitle">L'ecosistema digitale dedicato all'apicoltura italiana</p>
         <p class="cta-line">UNA SOLA PIATTAFORMA PER TUTTI I SERVIZI</p>
     </section>
 
@@ -202,11 +249,11 @@
     <footer>
         <a href="info.html" class="btn-accedi">ACCEDI</a>
         <div class="footer-links">
-            <a href="info.html">Privacy Policy</a>
+            <a href="privacy.html">Privacy Policy</a>
         </div>
         <p>347 7867230 - beeinnovativehub@gmail.com</p>
         <div class="socials">
-            <a href="https://www.instagram.com/beeinnovative_hub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
+            <a href="https://www.instagram.com/beeinnovative_hub" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
             <a href="https://www.facebook.com/people/BeeInnovative-Hub/61559047614434/" target="_blank">
@@ -228,11 +275,10 @@
             slides[currentSlide].classList.add('active');
         }
 
-        function changeSlide(step) {
-            showSlide(currentSlide + step);
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
         }
 
-        // Auto-play ogni 5 secondi
         setInterval(() => changeSlide(1), 5000);
     </script>
 </body>
