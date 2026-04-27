@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeInnovative Hub - Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* RESET E STILI BASE */
+        body, h1, p, ul {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #3c4043;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* HEADER NERO */
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            height: 35px;
+        }
+
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: #8ab4f8;
+        }
+
+        /* CONTENUTO CENTRALE */
+        .main-content {
+            flex: 1;
+            margin-top: 120px;
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3c4043;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .thanks-msg {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #3c4043;
+        }
+
+        /* BOTTONE WAITING LIST */
+        .btn-waitinglist {
+            background-color: #3c4043;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .btn-waitinglist:hover {
+            background-color: #555a5e;
+        }
+
+        .footer-note {
+            font-size: 1rem;
+            color: #3c4043;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #3c4043;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 1.6rem;
+            margin-top: 20px;
+        }
+
+        .socials a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="Logo.png" alt="Logo">
+            <span class="site-title">BeeInnovative Hub</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="info.html">Chi siamo</a></li>
+                <li><a href="info.html">Servizi</a></li>
+                <li><a href="info.html">Contatti</a></li>
+                <li><a href="info.html">Accedi</a></li>
+                <li><a href="info.html"><i class="fas fa-search"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <h1>Il sito sarà disponibile al termine della fase di validazione</h1>
+        
+        <p class="description">
+            La landing page è stata sviluppata per lo smoke test con l'obiettivo di validare l'interesse reale degli utenti. 
+            Il sito non è ancora attivo in quanto la piattaforma attualmente è in fase di programmazione.
+        </p>
+
+        <p class="thanks-msg"><b>Grazie per averci aiutato</b></p>
+
+        <a href="URL_DEL_TUO_GOOGLE_FORM_QUI" target="_blank" class="btn-waitinglist">
+            ISCRIVITI ALLA WAITING LIST
+        </a>
+
+        <p class="footer-note">
+            La piattaforma è in fase di sviluppo. Lascia la tua <b>mail</b> per essere ricontattato al momento del lancio.
+        </p>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <p>347 7867230 - beeinnovativehub@gmail.com</p>
+        <div class="socials">
+            <a href="https://www.instagram.com/beeinnovative_hub" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/people/BeeInnovative-Hub/61559047614434/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://t.me/beeinnovativehub" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
