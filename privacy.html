@@ -2,23 +2,68 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Privacy Policy - BeeInnovative Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Open Sans', Arial, sans-serif;
-            line-height: 1.6;
-            color: #3c4043;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
+        /* RESET E STILI BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', Arial, sans-serif; background-color: #f8f9fa; color: #3c4043; line-height: 1.6; }
+
+        /* HEADER NERO - STILE UNIFICATO */
         header {
             background-color: #000000;
             color: #ffffff;
-            padding: 20px 40px;
-            text-align: center;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10000;
+            height: 60px;
         }
+
+        .logo-area a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+        .logo-area img { height: 35px; width: auto; }
+        .site-title { font-size: 1.1rem; font-weight: 300; }
+
+        /* NAVIGAZIONE */
+        nav ul { list-style: none; display: flex; gap: 15px; align-items: center; }
+        nav li { position: relative; }
+        nav a { color: #ffffff; text-decoration: none; font-size: 0.85rem; padding: 5px 10px; border-radius: 4px; transition: 0.3s; }
+        nav a:hover { color: #8ab4f8; }
+
+        /* MENU A TENDINA (DROPDOWN) */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 260px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 11000;
+            border-radius: 4px;
+            padding: 10px 0;
+            list-style: none;
+        }
+        .dropdown-menu li { width: 100%; display: block; }
+        .dropdown-menu a {
+            color: #3c4043 !important;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            display: block;
+            border: none;
+            text-align: left;
+        }
+        .dropdown-menu a:hover { background-color: #f1f3f4; color: #8ab4f8 !important; }
+        nav li:hover .dropdown-menu { display: block; }
+
+        /* SPAZIATORE E CONTENUTO */
+        .header-spacer { height: 60px; }
+
         .container {
             max-width: 800px;
             margin: 40px auto;
@@ -27,67 +72,111 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border-radius: 8px;
         }
-        h1 { color: #000; border-bottom: 2px solid #8eb359; padding-bottom: 10px; }
+
+        h1 { color: #000; border-bottom: 2px solid #8eb359; padding-bottom: 10px; margin-bottom: 20px; }
         h2 { color: #8eb359; margin-top: 30px; font-size: 1.2rem; }
-        p, li { font-size: 0.95rem; }
+        p, li { font-size: 0.95rem; margin-bottom: 10px; }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+
         .back-link {
             display: inline-block;
             margin-top: 30px;
             color: #8eb359;
             text-decoration: none;
             font-weight: bold;
+            transition: 0.3s;
         }
+        .back-link:hover { color: #000; }
+
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
             font-size: 0.8rem;
             color: #70757a;
+            background: #f8f9fa;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 10px 15px; }
+            .site-title { font-size: 0.8rem; }
+            nav ul { gap: 5px; }
+            nav a { font-size: 0.7rem; padding: 4px 6px; }
+            .container { margin: 20px; padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="Logo.png" alt="Logo" style="height: 40px; margin-bottom: 10px;"><br>
-        <strong>BeeInnovative Hub</strong>
-    </header>
-
-    <div class="container">
-        <h1>Informativa sulla Privacy</h1>
-        <p>Benvenuto su BeeInnovative Hub. La tua privacy è fondamentale per noi. Questa pagina spiega come gestiamo i tuoi dati durante questa fase di test del portale.</p>
-
-        <h2>1. Quali dati raccogliamo?</h2>
-        <p>In questa fase di "Smoke Test", potremmo raccogliere esclusivamente:</p>
-        <ul>
-            <li>Indirizzo Email (se fornito volontariamente per ricevere aggiornamenti).</li>
-            <li>Dati di navigazione anonimi (tramite cookie tecnici) per capire quante persone visitano il sito.</li>
-        </ul>
-
-        <h2>2. Perché raccogliamo questi dati?</h2>
-        <p>I dati servono unicamente a:</p>
-        <ul>
-            <li>Misurare l'interesse degli utenti verso il progetto BeeInnovative Hub.</li>
-            <li>Informarti non appena i servizi completi saranno disponibili.</li>
-            <li>Migliorare l'esperienza d'uso del sito in vista del lancio ufficiale.</li>
-        </ul>
-
-        <h2>3. Gestione e Sicurezza (GDPR)</h2>
-        <p>In conformità con il <strong>Regolamento UE 2016/679 (GDPR)</strong>, ti informiamo che:</p>
-        <ul>
-            <li><strong>Titolare del trattamento:</strong> BeeInnovative Hub.</li>
-            <li><strong>Sicurezza:</strong> I tuoi dati non saranno mai venduti o ceduti a terzi.</li>
-            <li><strong>Conservazione:</strong> I dati saranno conservati solo per il tempo strettamente necessario alla durata dei test.</li>
-        </ul>
-
-        <h2>4. I tuoi diritti</h2>
-        <p>In ogni momento puoi richiedere la cancellazione dei tuoi dati o chiedere informazioni inviando una mail a: <strong>beeinnovativehub@gmail.com</strong>.</p>
-
-        <a href="index.html" class="back-link">← Torna alla Home</a>
+<header>
+    <div class="logo-area">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
+            <span class="site-title">BeeInnovative Hub</span>
+        </a>
     </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="info.html">Chi siamo</a></li>
+            <li>
+                <a href="#">Servizi <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="info.html">E-learning</a></li>
+                    <li><a href="info.html">Monitoraggio della Salute</a></li>
+                    <li><a href="info.html">Consulenze Tecniche e Burocratiche</a></li>
+                    <li><a href="info.html">Analisi</a></li>
+                    <li><a href="info.html">Certificazioni</a></li>
+                    <li><a href="info.html">Marketplace</a></li>
+                    <li><a href="info.html">Ricerca</a></li>
+                    <li><a href="info.html">Assistenza Tecnica</a></li>
+                </ul>
+            </li>
+            <li><a href="info.html">Contatti</a></li>
+            <li><a href="info.html">Accedi</a></li>
+            <li><a href="info.html"><i class="fas fa-search"></i></a></li>
+        </ul>
+    </nav>
+</header>
 
-    <footer>
-        &copy; 2024 BeeInnovative Hub - Pagina informativa ad uso dimostrativo.
-    </footer>
+<div class="header-spacer"></div>
+
+<div class="container">
+    <h1>Informativa sulla Privacy</h1>
+    <p>Benvenuto su BeeInnovative Hub. La tua privacy è fondamentale per noi. Questa pagina spiega come gestiamo i tuoi dati durante questa fase di test del portale.</p>
+
+    <h2>1. Quali dati raccogliamo?</h2>
+    <p>In questa fase di "Smoke Test", potremmo raccogliere esclusivamente:</p>
+    <ul>
+        <li>Indirizzo Email (se fornito volontariamente per ricevere aggiornamenti).</li>
+        <li>Dati di navigazione anonimi (tramite cookie tecnici) per capire quante persone visitano il sito.</li>
+    </ul>
+
+    <h2>2. Perché raccogliamo questi dati?</h2>
+    <p>I dati servono unicamente a:</p>
+    <ul>
+        <li>Misurare l'interesse degli utenti verso il progetto BeeInnovative Hub.</li>
+        <li>Informarti non appena i servizi completi saranno disponibili.</li>
+        <li>Migliorare l'esperienza d'uso del sito in vista del lancio ufficiale.</li>
+    </ul>
+
+    <h2>3. Gestione e Sicurezza (GDPR)</h2>
+    <p>In conformità con il <strong>Regolamento UE 2016/679 (GDPR)</strong>, ti informiamo che:</p>
+    <ul>
+        <li><strong>Titolare del trattamento:</strong> BeeInnovative Hub.</li>
+        <li><strong>Sicurezza:</strong> I tuoi dati non saranno mai venduti o ceduti a terzi.</li>
+        <li><strong>Conservazione:</strong> I dati saranno conservati solo per il tempo strettamente necessario alla durata dei test.</li>
+    </ul>
+
+    <h2>4. I tuoi diritti</h2>
+    <p>In ogni momento puoi richiedere la cancellazione dei tuoi dati o chiedere informazioni inviando una mail a: <strong>beeinnovativehub@gmail.com</strong>.</p>
+
+    <a href="index.html" class="back-link">← Torna alla Home</a>
+</div>
+
+<footer>
+    &copy; 2024 BeeInnovative Hub - Pagina informativa ad uso dimostrativo.
+</footer>
 
 </body>
 </html>
