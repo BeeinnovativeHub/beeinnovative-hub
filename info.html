@@ -6,130 +6,155 @@
     <title>BeeInnovative Hub - Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    /* RESET E STILI BASE */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Open Sans', Arial, sans-serif; background-color: #ffffff; color: #3c4043; line-height: 1.6; }
+        /* RESET E STILI BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', Arial, sans-serif; background-color: #ffffff; color: #3c4043; line-height: 1.6; }
 
-    /* HEADER NERO - STILE UNIFICATO */
-    header {
-        background-color: #000000;
-        color: #ffffff;
-        padding: 10px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 10000; /* Molto alto per stare sopra tutto */
-        height: 60px;
-    }
+        /* HEADER NERO - STILE UNIFICATO */
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10000;
+            height: 60px;
+        }
 
-    .logo-area a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
-    .logo-area img { height: 35px; width: auto; }
-    .site-title { font-size: 1.1rem; font-weight: 300; }
+        .logo-area a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+        .logo-area img { height: 35px; width: auto; }
+        .site-title { font-size: 1.1rem; font-weight: 300; }
 
-    /* NAVIGAZIONE */
-    nav ul { list-style: none; display: flex; gap: 15px; align-items: center; }
-    nav li { position: relative; }
-    nav a { color: #ffffff; text-decoration: none; font-size: 0.85rem; padding: 5px 10px; border-radius: 4px; transition: 0.3s; }
-    nav a:hover { color: #8ab4f8; }
+        /* NAVIGAZIONE */
+        nav ul { list-style: none; display: flex; gap: 15px; align-items: center; }
+        nav li { position: relative; }
+        nav a { color: #ffffff; text-decoration: none; font-size: 0.85rem; padding: 5px 10px; border-radius: 4px; transition: 0.3s; }
+        nav a:hover { color: #8ab4f8; }
 
-    /* MENU A TENDINA (DROPDOWN) */
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #ffffff;
-        min-width: 260px;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 11000;
-        border-radius: 4px;
-        padding: 10px 0;
-        list-style: none;
-    }
-    .dropdown-menu li { width: 100%; display: block; }
-    .dropdown-menu a {
-        color: #3c4043 !important;
-        padding: 10px 20px;
-        font-size: 0.8rem;
-        display: block;
-        border-radius: 0;
-        text-align: left;
-        border: none; /* Rimuove il bordo che avevi prima */
-    }
-    .dropdown-menu a:hover { background-color: #f1f3f4; color: #8ab4f8 !important; }
-    nav li:hover .dropdown-menu { display: block; }
+        /* MENU A TENDINA (DROPDOWN) */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 260px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 11000;
+            border-radius: 4px;
+            padding: 10px 0;
+            list-style: none;
+        }
+        .dropdown-menu li { width: 100%; display: block; }
+        .dropdown-menu a {
+            color: #3c4043 !important;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            display: block;
+            border: none;
+        }
+        .dropdown-menu a:hover { background-color: #f1f3f4; color: #8ab4f8 !important; }
+        nav li:hover .dropdown-menu { display: block; }
 
-    /* SPAZIATORE E CONTENUTO */
-    .header-spacer { height: 60px; }
+        /* SPAZIATORE PER HEADER FISSO */
+        .header-spacer { height: 60px; }
 
-    .hero {
-        height: 40vh;
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                    url('https://images.pexels.com/photos/36001293/pexels-photo-36001293.jpeg?auto=compress&w=1200');
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-    }
-    .hero h2 { font-size: 2.5rem; font-weight: 300; letter-spacing: 2px; }
+        /* HERO */
+        .hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.pexels.com/photos/36001293/pexels-photo-36001293.jpeg?auto=compress&w=1200');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h2 { font-size: 2.5rem; font-weight: 300; letter-spacing: 2px; }
 
-    .main-container { padding: 40px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
-    h1 { font-size: 1.8rem; margin-bottom: 20px; color: #000; font-weight: 700; }
-    .intro-text { font-size: 1.1rem; color: #5f6368; margin-bottom: 40px; }
+        /* CONTAINER PRINCIPALE */
+        .main-container { padding: 40px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 1.8rem; margin-bottom: 20px; color: #000; font-weight: 700; }
+        .intro-text { font-size: 1.1rem; color: #5f6368; margin-bottom: 40px; }
 
-    /* GRIGLIA CARDS */
-    .grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 40px 0; }
-    .card { flex: 1; min-width: 300px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: #fff; text-align: left; transition: 0.3s; }
-    .card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-    .card img { width: 100%; height: 220px; object-fit: cover; }
-    .card-body { padding: 25px; }
-    .card h3 { margin-bottom: 15px; font-size: 1.3rem; color: #8eb359; }
-    
-    .check-list { list-style: none; }
-    .check-list li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 0.95rem; }
-    .check-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: #8eb359; }
+        /* FIX IMMAGINE API (EX img-fluid) */
+        .img-fluid { 
+            width: 100%; 
+            max-width: 800px; 
+            height: 400px; 
+            object-fit: cover; 
+            border-radius: 12px; 
+            margin: 40px auto; 
+            display: block; 
+        }
 
-    .btn-cta {
-        display: inline-block;
-        background: #3c4043;
-        color: #fff !important;
-        padding: 15px 40px;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 4px;
-        margin-top: 20px;
-        transition: 0.3s;
-    }
-    .btn-cta:hover { background: #000; }
+        /* GRIGLIA CARDS */
+        .grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 40px 0; }
+        .card { flex: 1; min-width: 300px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; background: #fff; text-align: left; transition: 0.3s; }
+        .card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card h3 { margin-bottom: 15px; font-size: 1.3rem; color: #8eb359; }
+        
+        .check-list { list-style: none; }
+        .check-list li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 0.95rem; }
+        .check-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: #8eb359; }
 
-    footer { background: #3c4043; color: #fff; padding: 50px 20px; text-align: center; margin-top: 60px; }
-    .social-icons { display: flex; justify-content: center; gap: 30px; margin: 20px 0; font-size: 1.8rem; }
-    .social-icons a { color: #fff; transition: 0.3s; }
-    .social-icons a:hover { color: #8ab4f8; }
+        /* FIX IMMAGINE NATURA (BOTTOM) */
+        .full-width-img { 
+            width: 100%; 
+            max-width: 800px; 
+            height: 350px; 
+            object-fit: cover; 
+            border-radius: 12px; 
+            margin: 40px auto; 
+            display: block; 
+        }
 
-    /* MOBILE RESPONSIVE */
-    @media (max-width: 768px) {
-        header { padding: 10px 15px; }
-        .site-title { font-size: 0.9rem; }
-        nav ul { gap: 5px; }
-        nav a { font-size: 0.7rem; padding: 4px 6px; }
-        .dropdown-menu { min-width: 200px; }
-        .hero h2 { font-size: 1.8rem; }
-    }
-</style>
+        .btn-cta {
+            display: inline-block;
+            background: #3c4043;
+            color: #fff !important;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-cta:hover { background: #000; }
+
+        /* FOOTER */
+        footer { background: #3c4043; color: #fff; padding: 50px 20px; text-align: center; margin-top: 60px; }
+        .social-icons { display: flex; justify-content: center; gap: 30px; margin: 20px 0; font-size: 1.8rem; }
+        .social-icons a { color: #fff; transition: 0.3s; }
+        .social-icons a:hover { color: #8ab4f8; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            header { padding: 10px 15px; }
+            .site-title { font-size: 0.8rem; }
+            nav ul { gap: 5px; }
+            nav a { font-size: 0.7rem; padding: 4px 6px; }
+            .dropdown-menu { min-width: 200px; }
+            .hero h2 { font-size: 1.8rem; }
+            .img-fluid, .full-width-img { height: 250px; }
+        }
+    </style>
 </head>
 <body>
 
-   <header>
+<header>
     <div class="logo-area">
-        <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px; color: inherit;">
-            <img src="logo.svg" alt="Logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Logo">
             <span class="site-title">BeeInnovative Hub</span>
         </a>
     </div>
@@ -157,73 +182,75 @@
     </nav>
 </header>
 
-    <div class="header-spacer"></div>
+<div class="header-spacer"></div>
 
-    <section class="hero">
-        <h2>BeeInnovative Hub</h2>
-    </section>
+<section class="hero">
+    <h2>BeeInnovative Hub</h2>
+</section>
 
-    <div class="main-container">
-        <h1>Il sito sarà disponibile al termine della fase di validazione</h1>
-        
-        <p class="intro-text">
-            La landing page è stata sviluppata per lo <b>smoke test</b> con l'obiettivo di validare l'interesse reale degli utenti. 
-            Verrai ricontattato via mail non appena la piattaforma sarà pronta per il lancio ufficiale.
-        </p>
+<div class="main-container">
+    <h1>Il sito sarà disponibile al termine della fase di validazione</h1>
+    
+    <p class="intro-text">
+        La landing page è stata sviluppata per lo <b>smoke test</b> con l'obiettivo di validare l'interesse reale degli utenti. 
+        Verrai ricontattato via mail non appena la piattaforma sarà pronta per il lancio ufficiale.
+    </p>
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvmaXtOptOzD9gkPKGCTChq4p67_BKRCvtUwUhg_IsChy0XQ/viewform?usp=header" class="btn-cta">ISCRIVITI ALLA WAITING LIST</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvmaXtOptOzD9gkPKGCTChq4p67_BKRCvtUwUhg_IsChy0XQ/viewform?usp=header" class="btn-cta">ISCRIVITI ALLA WAITING LIST</a>
 
-        <img src="https://images.pexels.com/photos/13086550/pexels-photo-13086550.jpeg" class="img-fluid" alt="Bees">
+    <!-- Immagine Api centrata e proporzionata -->
+    <img src="https://images.pexels.com/photos/13086550/pexels-photo-13086550.jpeg" class="img-fluid" alt="Bees">
 
-        <h2 style="margin: 40px 0 20px; font-size: 1.2rem;">A CHI E’ RIVOLTO IL SITO E COSA OFFRE</h2>
+    <h2 style="margin: 40px 0 20px; font-size: 1.5rem; color: #3c4043;">A CHI È RIVOLTO IL SITO E COSA OFFRE</h2>
 
-        <div class="grid">
-            <div class="card">
-                <img src="https://images.pexels.com/photos/5247994/pexels-photo-5247994.jpeg?auto=compress&w=600" alt="Apicoltori">
-                <div class="card-body">
-                    <h3>AGLI APICOLTORI</h3>
-                    <ul class="check-list">
-                        <li>Ottimizzare la comunicazione con aziende</li>
-                        <li>Semplificare la ricerca dei servizi</li>
-                        <li>Marketplace dedicato al settore</li>
-                        <li>Esperienza personalizzata</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.pexels.com/photos/5247942/pexels-photo-5247942.jpeg?auto=compress&w=600" alt="Aziende">
-                <div class="card-body">
-                    <h3>ALLE AZIENDE</h3>
-                    <ul class="check-list">
-                        <li>Incrementare i contatti qualificati</li>
-                        <li>Ridurre i costi di acquisizione</li>
-                        <li>Aumentare il tasso di conversione</li>
-                        <li>Garantire visibilità mirata</li>
-                    </ul>
-                </div>
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.pexels.com/photos/5247994/pexels-photo-5247994.jpeg?auto=compress&w=600" alt="Apicoltori">
+            <div class="card-body">
+                <h3>AGLI APICOLTORI</h3>
+                <ul class="check-list">
+                    <li>Ottimizzare la comunicazione con aziende</li>
+                    <li>Semplificare la ricerca dei servizi</li>
+                    <li>Marketplace dedicato al settore</li>
+                    <li>Esperienza personalizzata</li>
+                </ul>
             </div>
         </div>
 
-        <img src="https://images.pexels.com/photos/12875650/pexels-photo-12875650.jpeg?auto=compress&w=800" class="full-width-img" alt="Nature">
-
-        <div style="margin: 30px 0; text-align: center; line-height: 1.8;">
-            <p><b>Ottimizzare la comunicazione con apicoltori e aziende</b></p>
-            <p><b>Semplificare l'accesso, la comparazione e la ricerca dei servizi</b></p>
-            <p><b>Garantire un'esperienza personalizzata</b></p>
+        <div class="card">
+            <img src="https://images.pexels.com/photos/5247942/pexels-photo-5247942.jpeg?auto=compress&w=600" alt="Aziende">
+            <div class="card-body">
+                <h3>ALLE AZIENDE</h3>
+                <ul class="check-list">
+                    <li>Incrementare i contatti qualificati</li>
+                    <li>Ridurre i costi di acquisizione</li>
+                    <li>Aumentare il tasso di conversione</li>
+                    <li>Garantire visibilità mirata</li>
+                </ul>
+            </div>
         </div>
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvmaXtOptOzD9gkPKGCTChq4p67_BKRCvtUwUhg_IsChy0XQ/viewform?usp=header" class="btn-cta">ISCRIVITI ALLA WAITING LIST</a>
     </div>
 
-    <footer>
-        <p>beeinnovativehub@gmail.com | 347 7867230</p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/beeinnovative_hub" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/people/BeeInnovative-Hub/61559047614434/" target="_blank"><i class="fab fa-facebook"></i></a>
-        </div>
-        <p style="margin-top: 20px; font-size: 0.7rem; color: #666;">&copy; 2024 BeeInnovative Hub. Tutti i diritti riservati.</p>
-    </footer>
+    <!-- Immagine Natura centrata e proporzionata -->
+    <img src="https://images.pexels.com/photos/12875650/pexels-photo-12875650.jpeg?auto=compress&w=800" class="full-width-img" alt="Nature">
+
+    <div style="margin: 30px 0; text-align: center; line-height: 2;">
+        <p><b>Ottimizzare la comunicazione con apicoltori e aziende</b></p>
+        <p><b>Semplificare l'accesso, la comparazione e la ricerca dei servizi</b></p>
+        <p><b>Garantire un'esperienza personalizzata</b></p>
+    </div>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvmaXtOptOzD9gkPKGCTChq4p67_BKRCvtUwUhg_IsChy0XQ/viewform?usp=header" class="btn-cta">ISCRIVITI ALLA WAITING LIST</a>
+</div>
+
+<footer>
+    <p>beeinnovativehub@gmail.com | 347 7867230</p>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/beeinnovative_hub" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/people/BeeInnovative-Hub/61559047614434/" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.7rem; color: #ccc;">&copy; 2024 BeeInnovative Hub. Tutti i diritti riservati.</p>
+</footer>
 
 </body>
 </html>
