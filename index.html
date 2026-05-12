@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- 1. IUBENDA: Gestione Consensi -->
+    <!-- 1. IUBENDA -->
     <script type="text/javascript">
         var _iub = _iub || [];
         _iub.csConfiguration = {"siteId":4505782,"cookiePolicyId":53435397,"storage":{"useSiteId":true}};
@@ -29,12 +29,12 @@
     </script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeeInnovative Hub - Home</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* RESET BASE */
         body, h1, h2, p, ul, li { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', Arial, sans-serif; background-color: #ffffff; color: #3c4043; overflow-x: hidden; }
 
@@ -51,87 +51,78 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            height: 65px;
+            height: 60px;
         }
         .logo-area { display: flex; align-items: center; gap: 10px; }
         .logo-area img { height: 35px; }
         .site-title { font-size: 1.1rem; font-weight: 300; }
 
-        /* NAVIGAZIONE DESKTOP */
+        /* NAVIGAZIONE */
         nav ul { list-style: none; display: flex; gap: 15px; align-items: center; }
-        nav a { color: #ffffff; text-decoration: none; font-size: 0.9rem; padding: 8px; border-radius: 4px; transition: 0.3s; }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        nav a { color: #ffffff; text-decoration: none; font-size: 0.9rem; padding: 5px 10px; transition: 0.3s; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
-        /* --- FIX MOBILE (Immagini 1000282577.jpg e 1000282576.jpg) --- */
-        @media (max-width: 768px) {
-            .site-title { font-size: 0.9rem; }
-            .logo-area img { height: 28px; }
-            .menu-toggle { display: block; }
-
-            nav ul {
-                display: none; 
-                flex-direction: column;
-                position: absolute;
-                top: 65px;
-                left: 0;
-                width: 100%;
-                background-color: #000000;
-                padding-bottom: 20px;
-            }
-            nav ul.show { display: flex; }
-            nav li { width: 100%; border-bottom: 1px solid #222; }
-            nav a { display: block; padding: 15px; text-align: center; font-size: 1rem; }
-
-            /* Testi Hero ridimensionati per evitare l'overflow */
-            .hero h1 { font-size: 1.8rem !important; letter-spacing: 1px !important; }
-            .hero .subtitle { font-size: 0.95rem !important; padding: 0 15px !important; }
-            .hero .cta-line { font-size: 0.85rem !important; width: 90% !important; }
-        }
-
-        /* HERO SECTION */
+        /* HERO */
         .hero {
-            margin-top: 65px; height: 75vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            margin-top: 60px;
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('https://images.pexels.com/photos/36001293/pexels-photo-36001293.jpeg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center;
+            text-align: center; color: white;
         }
-        .hero h1 { font-size: 3rem; font-weight: 300; margin-bottom: 10px; text-transform: uppercase; }
-        .hero .subtitle { font-size: 1.2rem; margin-bottom: 20px; max-width: 600px; }
-        .hero .cta-line { font-size: 1.1rem; border-top: 1px solid white; padding-top: 15px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 300; letter-spacing: 4px; margin-bottom: 10px; }
+        .hero .subtitle { font-size: 1.1rem; margin-bottom: 25px; padding: 0 20px; }
+        .hero .cta-line { font-size: 1.4rem; letter-spacing: 2px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 15px; }
 
-        /* SERVIZI */
-        .services-title { text-align: center; color: #8eb359; margin: 40px 0 20px; font-size: 1.8rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5% 40px; }
-        .service-item { text-align: center; }
-        .service-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
+        /* PULSANTI */
+        .btn-section { text-align: center; padding: 40px 0; }
+        .btn-scopri { background-color: #3c4043; color: white; padding: 12px 35px; text-decoration: none; border-radius: 4px; font-weight: bold; }
 
-        footer { background-color: #222; color: #ccc; padding: 30px; text-align: center; font-size: 0.8rem; }
+        /* CAROSELLO */
+        .carousel-container { position: relative; width: 100%; height: 450px; overflow: hidden; margin: 20px 0; }
+        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 0.8s; background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; text-align: center; color: white; }
+        .slide.active { opacity: 1; }
+        .slide-content h2 { font-size: 3rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.7); font-weight: bold; }
+
+        /* SERVIZI GRID */
+        .services-title { text-align: center; color: #8eb359; margin: 40px 0; font-size: 1.8rem; text-transform: uppercase; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 10% 50px; text-align: center; }
+        .service-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; }
+        .service-item h3 { margin-top: 15px; font-size: 1.5rem; color: #333; }
+        .service-item p { color: #666; margin-top: 5px; }
+
+        /* FOOTER */
+        footer { background-color: #3c4043; color: white; padding: 40px 20px; text-align: center; }
+        .btn-accedi { display: inline-block; background: white; color: black; padding: 12px 60px; text-decoration: none; font-weight: bold; border-radius: 4px; margin-bottom: 25px; }
+        .socials { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; margin-top: 20px; }
+        .socials a { color: white; }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem !important; }
+            .hero .subtitle { font-size: 0.9rem !important; }
+            .hero .cta-line { font-size: 0.85rem !important; }
+            .menu-toggle { display: block; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: black; padding: 20px 0; }
+            nav ul.show { display: flex; }
+            .slide-content h2 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-area">
-            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 8px; color: inherit;">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
                 <img src="logo.svg" alt="Logo">
                 <span class="site-title">BeeInnovative Hub</span>
             </a>
         </div>
         <nav>
-            <button class="menu-toggle" id="mobile-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul id="nav-menu">
+            <button class="menu-toggle" id="mobile-btn"><i class="fas fa-bars"></i></button>
+            <ul id="nav-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="info.html">Chi siamo</a></li>
                 <li><a href="info.html">Servizi</a></li>
@@ -141,42 +132,76 @@
     </header>
 
     <section class="hero">
-        <h1>BeeInnovative Hub</h1>
+        <h1>BEEINNOVATIVE HUB</h1>
         <p class="subtitle">L'ecosistema digitale dedicato all'apicoltura italiana</p>
         <p class="cta-line">UNA SOLA PIATTAFORMA PER TUTTI I SERVIZI</p>
     </section>
 
-    <h2 class="services-title">I nostri servizi</h2>
-    <div class="services-grid">
-        <div class="service-item">
-            <img src="https://images.pexels.com/photos/13246008/pexels-photo-13246008.jpeg" alt="Tecnologia">
-            <h3>Innovazione</h3>
-            <p>Digitalizziamo la tua azienda apistica.</p>
+    <div class="btn-section">
+        <a href="info.html" class="btn-scopri">SCOPRI IL PROGETTO</a>
+    </div>
+
+    <!-- CAROSELLO -->
+    <div class="carousel-container">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/702935/pexels-photo-702935.jpeg');">
+            <div class="slide-content"><h2>SCOPRI</h2><p>IL PANORAMA NAZIONALE</p></div>
         </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/34178971/pexels-photo-34178971.jpeg');">
+            <div class="slide-content"><h2>VALUTA</h2><p>OPZIONI E SERVIZI</p></div>
+        </div>
+    </div>
+
+    <h2 class="services-title">TROVA QUELLO CHE CERCHI IN POCHI CLICK</h2>
+    
+    <div class="services-grid">
+        <!-- Immagine image_9d5abf.jpg -->
         <div class="service-item">
-            <img src="https://images.pexels.com/photos/5247993/pexels-photo-5247993.jpeg" alt="Laboratorio">
-            <h3>Analisi</h3>
-            <p>Monitoraggio della salute e qualità.</p>
+            <img src="https://images.pexels.com/photos/4424422/pexels-photo-4424422.jpeg" alt="Riduci">
+            <h3>Riduci</h3>
+            <p>i tempi di ricerca</p>
+        </div>
+        <!-- Immagine image_9d5aa1.jpg -->
+        <div class="service-item">
+            <img src="https://images.pexels.com/photos/4614165/pexels-photo-4614165.jpeg" alt="Confronta">
+            <h3>Confronta</h3>
+            <p>opzioni e servizi</p>
+        </div>
+        <!-- Immagine image_9d57f7.jpg -->
+        <div class="service-item">
+            <img src="https://images.pexels.com/photos/5984638/pexels-photo-5984638.jpeg" alt="Contatta">
+            <h3>Contatta</h3>
+            <p>apicoltori e aziende</p>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 BeeInnovative Hub - beeinnovativehub@gmail.com</p>
-        <p style="margin-top: 10px;"><a href="privacy.html" style="color: #888;">Privacy & Cookie Policy</a></p>
+        <a href="info.html" class="btn-accedi">ACCEDI</a>
+        <div class="footer-info">
+            <p style="margin-bottom: 10px;"><a href="privacy.html" style="color: #bbb; text-decoration: none;">Privacy Policy</a></p>
+            <p>347 7867230 - beeinnovativehub@gmail.com</p>
+        </div>
+        <div class="socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
     </footer>
 
     <script>
+        // Hamburger Menu
         const btn = document.getElementById('mobile-btn');
-        const menu = document.getElementById('nav-menu');
+        const list = document.getElementById('nav-list');
+        btn.onclick = (e) => { e.stopPropagation(); list.classList.toggle('show'); };
+        document.onclick = () => list.classList.remove('show');
 
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menu.classList.toggle('show');
-        });
-
-        document.addEventListener('click', () => {
-            menu.classList.remove('show');
-        });
+        // Carousel Logic
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5000);
     </script>
 </body>
 </html>
