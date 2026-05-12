@@ -48,6 +48,41 @@
         nav li { position: relative; } 
         nav a { color: #ffffff; text-decoration: none; font-size: 0.85rem; padding: 5px 10px; border-radius: 4px; }
         nav a.active, nav a:hover { color: #8ab4f8; }
+        /* TASTO HAMBURGER (Scompare su PC) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- STILI PER MOBILE --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; } /* Mostra il tasto */
+
+            nav ul {
+                display: none; /* Nascondi il menu di base */
+                flex-direction: column;
+                position: absolute;
+                top: 55px;
+                left: 0;
+                width: 100%;
+                background-color: #000;
+                padding: 20px 0;
+                gap: 0;
+                z-index: 1001;
+            }
+
+            nav ul.show { display: flex; } /* Lo mostra quando clicchi */
+
+            nav li { width: 100%; text-align: center; }
+            nav a { display: block; padding: 15px; font-size: 1rem; }
+            
+            /* Dropdown servizi su mobile */
+            .dropdown-menu { position: static; background-color: #111; width: 100%; box-shadow: none; }
+        }
 
         /* DROPDOWN */
         .dropdown-menu {
@@ -204,7 +239,10 @@
             </a>
         </div>
         <nav>
-            <ul>
+        <button class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul id="nav-list">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="info.html">Chi siamo</a></li>
                 <li>
@@ -327,5 +365,23 @@
 
         setInterval(() => changeSlide(1), 5000);
     </script>
+    <script>
+    // Seleziona il bottone e la lista del menu
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+
+    // Aggiunge l'evento click al bottone
+    menuToggle.addEventListener('click', () => {
+        // Aggiunge o toglie la classe 'show' alla lista
+        navList.classList.toggle('show');
+    });
+
+    // Opzionale: Chiude il menu automaticamente quando clicchi su un link
+    document.querySelectorAll('#nav-list a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('show');
+        });
+    });
+</script>
 </body>
 </html>
