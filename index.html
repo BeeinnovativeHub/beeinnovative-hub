@@ -29,22 +29,20 @@
     </script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BeeInnovative Hub - Home</title>
     
-    <!-- FONT E ICONE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* RESET E STILI BASE */
         body, h1, h2, p, ul, li { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', Arial, sans-serif; background-color: #ffffff; color: #3c4043; overflow-x: hidden; }
 
-        /* HEADER FISSO */
+        /* HEADER */
         header {
             background-color: #000000;
             color: #ffffff;
-            padding: 0 40px;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,28 +53,27 @@
             z-index: 1000;
             height: 65px;
         }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
         .logo-area img { height: 35px; }
-        .site-title { font-size: 1.2rem; font-weight: 300; white-space: nowrap; }
+        .site-title { font-size: 1.1rem; font-weight: 300; }
 
         /* NAVIGAZIONE DESKTOP */
-        nav ul { list-style: none; display: flex; gap: 20px; align-items: center; }
-        nav a { color: #ffffff; text-decoration: none; font-size: 0.9rem; padding: 5px 10px; border-radius: 4px; transition: 0.3s; }
-        nav a.active, nav a:hover { color: #8ab4f8; }
-
+        nav ul { list-style: none; display: flex; gap: 15px; align-items: center; }
+        nav a { color: #ffffff; text-decoration: none; font-size: 0.9rem; padding: 8px; border-radius: 4px; transition: 0.3s; }
+        
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             color: white;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* --- STILI MOBILE --- */
+        /* --- FIX MOBILE (Immagini 1000282577.jpg e 1000282576.jpg) --- */
         @media (max-width: 768px) {
-            header { padding: 0 20px; }
-            .site-title { font-size: 1.1rem; }
+            .site-title { font-size: 0.9rem; }
+            .logo-area img { height: 28px; }
             .menu-toggle { display: block; }
 
             nav ul {
@@ -87,154 +84,99 @@
                 left: 0;
                 width: 100%;
                 background-color: #000000;
-                padding: 20px 0;
-                border-top: 1px solid #222;
+                padding-bottom: 20px;
             }
             nav ul.show { display: flex; }
-            nav li { width: 100%; text-align: center; }
-            nav a { display: block; padding: 15px; font-size: 1.1rem; }
+            nav li { width: 100%; border-bottom: 1px solid #222; }
+            nav a { display: block; padding: 15px; text-align: center; font-size: 1rem; }
 
-            /* Gestione Dropdown su Mobile */
-            .dropdown-menu { position: static !important; background-color: #111 !important; width: 100% !important; display: none; }
-            nav li:hover .dropdown-menu { display: block; }
+            /* Testi Hero ridimensionati per evitare l'overflow */
+            .hero h1 { font-size: 1.8rem !important; letter-spacing: 1px !important; }
+            .hero .subtitle { font-size: 0.95rem !important; padding: 0 15px !important; }
+            .hero .cta-line { font-size: 0.85rem !important; width: 90% !important; }
         }
-
-        /* DROPDOWN DESKTOP */
-        .dropdown-menu {
-            display: none; position: absolute; top: 100%; left: 0;
-            background-color: #ffffff; min-width: 240px; border-radius: 4px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2); padding: 10px 0;
-        }
-        .dropdown-menu a { color: #333 !important; text-align: left; font-size: 0.85rem; }
-        .dropdown-menu a:hover { background-color: #f1f3f4; color: #8ab4f8 !important; }
-        nav li:hover .dropdown-menu { display: block; }
 
         /* HERO SECTION */
         .hero {
-            margin-top: 65px; height: 85vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+            margin-top: 65px; height: 75vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://images.pexels.com/photos/36001293/pexels-photo-36001293.jpeg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             color: white; text-align: center;
         }
-        .hero h1 { font-size: 3.5rem; font-weight: 300; letter-spacing: 3px; margin-bottom: 10px; }
-        .hero .subtitle { font-size: 1.2rem; margin-bottom: 25px; padding: 0 20px; }
-        .hero .cta-line { font-size: 1.3rem; border-top: 1px solid rgba(255,255,255,0.4); padding-top: 15px; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); }
+        .hero h1 { font-size: 3rem; font-weight: 300; margin-bottom: 10px; text-transform: uppercase; }
+        .hero .subtitle { font-size: 1.2rem; margin-bottom: 20px; max-width: 600px; }
+        .hero .cta-line { font-size: 1.1rem; border-top: 1px solid white; padding-top: 15px; }
 
-        /* CAROSELLO */
-        .carousel-container { position: relative; height: 450px; overflow: hidden; margin: 30px 0; }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: 0.8s; background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; color: white; text-align: center; }
-        .slide.active { opacity: 1; }
-        .slide-content h2 { font-size: 3rem; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
+        /* SERVIZI */
+        .services-title { text-align: center; color: #8eb359; margin: 40px 0 20px; font-size: 1.8rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 5% 40px; }
+        .service-item { text-align: center; }
+        .service-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
 
-        /* SERVIZI GRID */
-        .services-title { text-align: center; color: #8eb359; margin: 50px 0 30px; font-size: 2rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 10% 60px; }
-        .service-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .service-item h3 { margin-top: 15px; color: #333; }
-
-        /* FOOTER */
-        footer { background-color: #3c4043; color: white; padding: 40px 20px; text-align: center; }
-        .socials { display: flex; justify-content: center; gap: 20px; font-size: 1.8rem; margin-top: 20px; }
-        .socials a { color: white; }
+        footer { background-color: #222; color: #ccc; padding: 30px; text-align: center; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo-area">
-            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: inherit;">
-                <img src="logo.svg" alt="BeeInnovative Hub Logo">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 8px; color: inherit;">
+                <img src="logo.svg" alt="Logo">
                 <span class="site-title">BeeInnovative Hub</span>
             </a>
         </div>
         <nav>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Menu di navigazione">
+            <button class="menu-toggle" id="mobile-btn">
                 <i class="fas fa-bars"></i>
             </button>
-            <ul id="nav-list">
-                <li><a href="index.html" class="active">Home</a></li>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="info.html">Chi siamo</a></li>
-                <li>
-                    <a href="#">Servizi <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="info.html">E-learning</a></li>
-                        <li><a href="info.html">Monitoraggio Salute</a></li>
-                        <li><a href="info.html">Analisi Lab</a></li>
-                        <li><a href="info.html">Certificazioni</a></li>
-                    </ul>
-                </li>
+                <li><a href="info.html">Servizi</a></li>
                 <li><a href="info.html">Contatti</a></li>
-                <li><a href="info.html">Accedi</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>BEEINNOVATIVE HUB</h1>
+        <h1>BeeInnovative Hub</h1>
         <p class="subtitle">L'ecosistema digitale dedicato all'apicoltura italiana</p>
         <p class="cta-line">UNA SOLA PIATTAFORMA PER TUTTI I SERVIZI</p>
     </section>
 
-    <h2 class="services-title">Esplora i nostri servizi</h2>
+    <h2 class="services-title">I nostri servizi</h2>
     <div class="services-grid">
         <div class="service-item">
             <img src="https://images.pexels.com/photos/13246008/pexels-photo-13246008.jpeg" alt="Tecnologia">
             <h3>Innovazione</h3>
-            <p>Riduci i tempi di ricerca e ottimizza la tua attività.</p>
+            <p>Digitalizziamo la tua azienda apistica.</p>
         </div>
         <div class="service-item">
-            <img src="https://images.pexels.com/photos/5247993/pexels-photo-5247993.jpeg" alt="Analisi">
+            <img src="https://images.pexels.com/photos/5247993/pexels-photo-5247993.jpeg" alt="Laboratorio">
             <h3>Analisi</h3>
-            <p>Confronta opzioni e servizi basati sui dati.</p>
+            <p>Monitoraggio della salute e qualità.</p>
         </div>
     </div>
 
     <footer>
         <p>© 2026 BeeInnovative Hub - beeinnovativehub@gmail.com</p>
-        <div class="footer-links" style="margin: 15px 0;">
-            <a href="privacy.html" style="color: #bbb; text-decoration: none; font-size: 0.8rem;">Privacy & Cookie Policy</a>
-        </div>
-        <div class="socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-        </div>
+        <p style="margin-top: 10px;"><a href="privacy.html" style="color: #888;">Privacy & Cookie Policy</a></p>
     </footer>
 
-    <!-- LOGICA JAVASCRIPT -->
     <script>
-        // Gestione Menu Mobile
-        const menuToggle = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
+        const btn = document.getElementById('mobile-btn');
+        const menu = document.getElementById('nav-menu');
 
-        menuToggle.addEventListener('click', (e) => {
+        btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            navList.classList.toggle('show');
+            menu.classList.toggle('show');
         });
 
-        // Chiude il menu cliccando altrove (Ottimo per l'esperienza utente registrata su Clarity)
         document.addEventListener('click', () => {
-            navList.classList.remove('show');
+            menu.classList.remove('show');
         });
-
-        // Prevenzione chiusura al click dentro il menu
-        navList.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-
-        // Semplice logica Carosello (opzionale se decidi di aggiungerne altri)
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        if(slides.length > 0) {
-            setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 5000);
-        }
     </script>
-
 </body>
 </html>
